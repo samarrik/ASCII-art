@@ -1,0 +1,27 @@
+global:
+gradient $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. 
+negative 0
+size 1.0
+rotation -1
+convolution 0
+global_end;
+
+image:
+filename photo.png
+filetype png
+gradient  .:-=+*#%@"
+negative 1
+size 1
+rotation 0
+convolution 0
+image_end;
+
+image:
+filename photo2.jpeg
+filetype jpeg
+gradient  .:-=+*#%@"
+negative 1
+size 1
+rotation 0
+convolution 0
+image_end;

@@ -1,0 +1,8 @@
+The structure is quite simple enough, but it is flexible and can be developed in the future.
+
+                CParser                         CStorage ( will store CImages )
+    ( a base class for all parsers )
+                /    \           \              CImage ( a class which store useful data from images)
+               /      \           \
+     CParserPNG      CParserJPEG  (other formats in the future)
+       *all parsers will return an instance of CImage*

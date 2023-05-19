@@ -1,0 +1,47 @@
+# ASCII-art
+Autor: Ivan Samarskyi
+
+## Task from the progtest
+Vaším cílem je napsat nástroj, který na vstupu získá obrázek nebo sadu několika obrázků a překonvertuje je do ASCII art vizualizace.
+Pomocí parametrů při spuštění a/nebo konfiguračních souborů parametrizujte generování souborů.
+
+Implementujte následující funkcionality:
+1. Nástroj načítá obrázky v alespoň jednom běžném souborovém formátu. (př. BMP, PNG, JPEG, SVG, …)
+2. Implementujte alespoň 5 druhů různých operací (př. změna jasu, negativ, konvoluce, změna velikosti obrázku, …)
+3. Výstupem nástroje je ASCII art (textové odstíny šedi) vytvořený z obrázků, který umí zobrazit a uložit do souboru.
+4. Nástroj musí být konfigurovatelný ze souboru:
+    -> definice ASCII přechodů (př. název, znaky seřazené dle hustoty, …)
+    -> definice aplikovaných filtrů (jeden filtr může být aplikován víckrát s různými parametry)
+        -> V případě více předaných obrázků:
+            Nástroj spustí prezentaci jednotlivých snímků, kterou lze ovládat (alespoň změna snímku, zastavení prezentace, spuštění prezentace).
+            * Lze definovat filtry pro jednotlivé obrázky i pro celou množinu.
+
+Kde lze využít polymorfismus? (doporučené)
+1. filtry: změna jasu, negativ, konvoluce, změna velikosti obrázku, …
+2. různé styly ASCII vykreslení
+3. formáty vstupu: BMP, SVG, RAW, …
+4. druh výstupu: zobrazení, soubor, prezentace, …
+5. uživatelské rozhraní: konzole, ncurses, SDL, OpenGL (různé varianty), …
+
+## How my implementation will work 
+* converter == ascii-art generator
+
+Converter will receive a config text file as an argument. This file should be filled
+by a user according to the template^. As a result converter will receive a file with
+default specifications for ASCII converting(filters), image files and specifications for the
+conversion of each file (filters).
+
+1. Converter will read the config file, set default filters. 
+2. Info about each image will be read (loop) ^^
+    ->  Filename and filetype will be read firstly and a parser will be chosen. (There is a CParser abstract class which has child CParser*** (*** -> for all formats))
+        A CParser***(child) will get only useful data from the image and return it as an instace of the class CImage.
+    ->  Now filters data will be read.
+3. When config file will be read to the end pre-conversion will start (filters will be applied) + grayscale
+4. Pre-converted data will be converted to an ascii art and will be written in the file. (one image - one file )
+5. A user will recive statistics about the process of conversion
+6. A user will be able to start presentation of results (ascii-arts) or end the program
+
+## Where the polymorfism was applied?
+Polymorfism will be 'between' CParser(abstract parent) and CParserJPEG(child), CParserPNG(child) ... etc.
+That will ensure that image data will be extracted from each image type without any problems. All parsers
+will return an instance of CImage class which will be stored in the CStorage;

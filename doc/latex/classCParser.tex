@@ -1,0 +1,74 @@
+\doxysection{CParser Class Reference}
+\hypertarget{classCParser}{}\label{classCParser}\index{CParser@{CParser}}
+
+
+{\ttfamily \#include $<$cparser.\+h$>$}
+
+
+
+Inheritance diagram for CParser\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{classCParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for CParser\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=149pt]{classCParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCParser_afa10a4fc94cf5d504a139e5e41ef999f}{CParser}} ()=default
+\item 
+virtual \mbox{\hyperlink{classCParser_afa13ca8f68c99291893e3671b6c91117}{\texorpdfstring{$\sim$}{\string~}\+CParser}} ()
+\item 
+virtual \mbox{\hyperlink{classCImage}{CImage}} \& \mbox{\hyperlink{classCParser_a5dbb7554886e07e96e671669e7b53861}{read}} ()=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An abstract base class for all parsers 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classCParser_afa10a4fc94cf5d504a139e5e41ef999f}\label{classCParser_afa10a4fc94cf5d504a139e5e41ef999f} 
+\index{CParser@{CParser}!CParser@{CParser}}
+\index{CParser@{CParser}!CParser@{CParser}}
+\doxysubsubsection{\texorpdfstring{CParser()}{CParser()}}
+{\footnotesize\ttfamily CParser\+::\+CParser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [default]}}
+
+\Hypertarget{classCParser_afa13ca8f68c99291893e3671b6c91117}\label{classCParser_afa13ca8f68c99291893e3671b6c91117} 
+\index{CParser@{CParser}!````~CParser@{\texorpdfstring{$\sim$}{\string~}CParser}}
+\index{````~CParser@{\texorpdfstring{$\sim$}{\string~}CParser}!CParser@{CParser}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CParser()}{\string~CParser()}}
+{\footnotesize\ttfamily virtual CParser\+::\texorpdfstring{$\sim$}{\string~}\+CParser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCParser_a5dbb7554886e07e96e671669e7b53861}\label{classCParser_a5dbb7554886e07e96e671669e7b53861} 
+\index{CParser@{CParser}!read@{read}}
+\index{read@{read}!CParser@{CParser}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classCImage}{CImage}} \& CParser\+::read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [pure virtual]}}
+
+A virtual method reads image data from the file //
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+param \mbox{[}out\mbox{]} \doxylink{classCImage}{CImage}\& Returns a newly created instance of \doxylink{classCImage}{CImage} filled with image data 
+
+Implemented in \mbox{\hyperlink{classCParserJPEG_a1643acbf2c412632a3a4fa5af9985fdd}{CParser\+JPEG}}, and \mbox{\hyperlink{classCParserPNG_a40c11e439ab3236045490f865544364f}{CParser\+PNG}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{cparser_8h}{cparser.\+h}}\end{DoxyCompactItemize}

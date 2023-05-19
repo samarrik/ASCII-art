@@ -1,0 +1,11 @@
+<map id="src/cparserjpeg.h" name="src/cparserjpeg.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,5,163,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,84,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,33,63,69,59,66,86,29"/>
+<area shape="rect" id="Node000003" href="$cparser_8h.html" title=" " alt="" coords="108,79,189,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,29,134,66,130,69,103,33"/>
+<area shape="rect" id="Node000004" href="$cimage_8h.html" title=" " alt="" coords="107,152,190,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="151,104,151,138,146,138,146,104"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="119,225,178,251"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="151,178,151,212,146,212,146,178"/>
+</map>
