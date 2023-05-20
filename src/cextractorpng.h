@@ -1,17 +1,17 @@
-#ifndef PARSERPNG
-#define PARSERPNG
+#ifndef EXTRACTORPNG
+#define EXTRACTORPNG
 
 #include "png.h"
-#include "cparser.h"
+#include "cextractor.h"
 #include <string>
 
-class CParserPNG : public CParser {
+class CExtractorPNG : public CExtractor {
     public:
         //Create an instance of the parser, prepare it for reading
-        CParserPNG( std::string filename );
+        CExtractorPNG( std::string filename );
 
         //Delete an instance of the parser
-        ~CParserPNG();
+        ~CExtractorPNG();
 
         //Read data from the image
         CImage & read() override;
@@ -30,4 +30,4 @@ class CParserPNG : public CParser {
         int filter_method;
 };
 
-#endif //PARSERPNG
+#endif //EXTRACTORPNG

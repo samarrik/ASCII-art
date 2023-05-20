@@ -1,19 +1,19 @@
-#ifndef PARSER
-#define PARSER
+#ifndef EXTRACTOR
+#define EXTRACTOR
 
 #include "cimage.h"
 
 /**
  * An abstract base class for all parsers
 */
-class CParser {
+class CExtractor {
 
     public:
-    //Default constructor
-        CParser() = default;
+        //An abstract base class won't have a constructor
+        CExtractor() = delete;
 
         //A vitual destructor which ensures deletion of the instance of the right child class
-        virtual ~CParser();
+        virtual ~CExtractor();
 
         /**
          * A virtual method reads image data from the file
@@ -22,5 +22,4 @@ class CParser {
         */
         virtual CImage & read() = 0;
 };
-
-#endif //PARSER
+#endif //EXTRACTOR

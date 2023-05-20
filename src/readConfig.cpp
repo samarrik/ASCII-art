@@ -1,4 +1,5 @@
 #include "readConfig.h"
+#include "cfilter.h"
 #include <fstream>
 #include <exception>
 #include <string>
@@ -18,7 +19,7 @@
  *          -3  There is a problem with an image file
  *          //-3
  */
-bool readImageSettings(std::ifstream &configFile, CStorage & images, CFilters & default_filters )
+bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, std::vector<CFilter> & default_filters )
 {   
     //Strings to save parameter/filename/filetype
     std::string parameter;
@@ -153,7 +154,7 @@ bool readGlobalSettings(std::ifstream & configFile, CFilters & default_filters)
     return false;
 }
 
-void readConfig(CStorage &images)
+void readConfig( std::vector<CImage> &images )
 {
     // Opens a config.txt file located in directory assets/ and checks if it is there and readable
     std::ifstream configFile(CONFIG_PATH, std::ios::in); // std::ios::in means that file will be opened in read-only mode
@@ -163,11 +164,17 @@ void readConfig(CStorage &images)
     }
 
     //Default filters will be set, if nothing will be changed
-    CFilters default_filters;
+    std::vector<CFilter> default_filters;
+    default_filters.push_back(CGradient().set_default());
+    default_filters.push_back(CContrast().set_default());
+    default_filters.push_back(CBrightness().set_default());
+    default_filters.push_back(CNegative().set_default());
+    default_filters.push_back(CScale().set_default());
+    default_filters.push_back(CConvolution().set_default());
 
     //String which will be used for reading the header  
     std::string header;
-    while ( 1 ){
+    while ( true ){
         configFile >> header;
 
         //If the end of the file was reached, stop reading
@@ -178,7 +185,7 @@ void readConfig(CStorage &images)
             if ( ! readGlobalSettings(configFile, default_filters) )
                 throw std::runtime_error("The structure of config.txt was violated in a block \"global\"");
             else {
-                std::cout << "Gloabl settings were set!" << std::endl;
+                std::cout << "Global settings were set!" << std::endl;
                 continue;
             }
 

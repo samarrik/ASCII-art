@@ -1,4 +1,4 @@
-#include "cparserpng.h"
+#include "cextractorpng.h"
 #include <iostream>
 #include <exception>
 
