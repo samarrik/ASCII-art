@@ -1,5 +1,5 @@
-#include "readConfig.h"
-#include "cfilter.h"
+#include "../headers/readConfig.h"
+#include "../headers/cfilter.h"
 #include <fstream>
 #include <exception>
 #include <string>
@@ -31,7 +31,7 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
     double db_val;
     int int_val;
 
-    //Local filters which will be applied to that particular image
+    //Local image which will be applied to that particular image
     CFilters local_filters;
     CImage * added_image = nullptr;
     
@@ -57,7 +57,7 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
         return false; //wrong format
     }
 
-    //Read filters
+    //Read image
     while ( 1 ){
         configFile >> parameter;
         if ( parameter == "image_end;"){
@@ -101,7 +101,7 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
 /**
  * Function reads "global" parameters set in config.txt
  * @param[in] configFile fstream of config.txt
- * @param[in] default_filters filters which will be used as default (being changed during this fun.)
+ * @param[in] default_filters image which will be used as default (being changed during this fun.)
  * @param[out] bool value which tells us if the read was successful or not
 */
 bool readGlobalSettings(std::ifstream & configFile, CFilters & default_filters)
@@ -163,7 +163,7 @@ void readConfig( std::vector<CImage> &images )
         throw std::runtime_error("An invalid config.txt was passed to converter.");
     }
 
-    //Default filters will be set, if nothing will be changed
+    //Default image will be set, if nothing will be changed
     std::vector<CFilter> default_filters;
     default_filters.push_back(CGradient().set_default());
     default_filters.push_back(CContrast().set_default());

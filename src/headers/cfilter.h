@@ -6,29 +6,25 @@
 
 class CFilter {
 public:
-    //An abstract base class won't have a constructor
-    CFilter() = delete;
+    CFilter() = default;
 
     virtual ~CFilter() = default;
 
     //Applies a filter to an image
     virtual void apply() = 0;
 
-    //Saves the value of the filter
-    virtual void save() = 0;
-
-    virtual void set_default() = 0;
+    virtual CFilter & set_default() = 0;
 };
 
 class CGradient : public CFilter {
 public:
-    CGradient ( const char * sequence = "" );
+    CGradient ( std::string src = "" );
 
     void apply() override;
 
-    void save() override;
+    void save( const std::string & src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     std::string m_gradient;
@@ -40,9 +36,9 @@ public:
 
     void apply() override;
 
-    void save() override;
+    void save( int src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     int m_brightness;
@@ -54,9 +50,9 @@ public:
 
     void apply() override;
 
-    void save() override;
+    void save( int src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     int m_contrast;
@@ -68,9 +64,9 @@ public:
 
     void apply() override;
 
-    void save() override;
+    void save( bool src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     bool m_is_enabled;
@@ -82,9 +78,9 @@ public:
 
     void apply() override;
 
-    void save() override;
+    void save( int src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     int m_scale;
@@ -96,9 +92,9 @@ public:
 
     void apply() override;
 
-    void save() override;
+    void save( bool src );
 
-    void set_default() override;
+    CFilter & set_default() override;
 
 private:
     bool m_is_enabled;

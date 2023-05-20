@@ -1,4 +1,4 @@
-#include "cimage.h"
+#include "../headers/cimage.h"
 
 CImage::CImage(){}
 

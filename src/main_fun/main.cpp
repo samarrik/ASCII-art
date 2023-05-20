@@ -1,7 +1,7 @@
 #include <iostream>
-#include "convertToAscii.h"
-#include "presentResults.h"
-#include "readConfig.h"
+#include "../headers/convertToAscii.h"
+#include "../headers/presentResults.h"
+#include "../headers/readConfig.h"
 #include <vector>
 
 int main(int argc, char *argv[])

@@ -1,4 +1,4 @@
-#include "cextractorpng.h"
+#include "../headers/cextractorpng.h"
 #include <iostream>
 #include <exception>
 
@@ -78,5 +78,5 @@ CImage & CParserPNG::read() {
     }
 
     //Returns CImage in some interesting way, we still don't know if we need 2d or 1d etc
-    //(learn more about filters you wanna implement)
+    //(learn more about image you wanna implement)
 }

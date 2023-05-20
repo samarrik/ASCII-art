@@ -19,8 +19,8 @@ public:
     void addFilter( CFilter & filter );
 
     /**
-     * A method applies filters to an image
-     * @param[in] filters A const reference to filters for that image
+     * A method applies image to an image
+     * @param[in] filters A const reference to image for that image
     */
     void applyFilters();
 
@@ -48,7 +48,7 @@ public:
     friend class CFilter;
 
 private:
-        //A set of filters to be applied
+        //A set of image to be applied
         std::vector<CFilter> m_filters;
         //raw pixels data
         char * m_image_data;
