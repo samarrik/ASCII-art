@@ -2,7 +2,7 @@
 #include <iostream>
 #include <exception>
 
-CParserPNG::CParserPNG( std::string filename ){
+CExtractorPNG::CExtractorPNG( const std::string & filename ){
     
     //Open the file for reading
     FILE *fp = fopen(filename.c_str(), "rb");
@@ -40,13 +40,13 @@ CParserPNG::CParserPNG( std::string filename ){
     png_set_sig_bytes(png_ptr, 8);  
 }
 
-CParserPNG::~CParserPNG(){
+CExtractorPNG::~CExtractorPNG(){
     //Don't forget to destroy all structures we used for reading the file
     png_destroy_read_struct(&png_ptr, NULL, NULL);
     png_destroy_info_struct( png_ptr, &info_ptr);
 }
 
-CImage & CParserPNG::read() {
+void CExtractorPNG::read() {
     //Read info of the image (up to actual image data)
     png_read_info(png_ptr, info_ptr);
 
@@ -54,16 +54,16 @@ CImage & CParserPNG::read() {
     png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_method, &compression_method, &filter_method);
 
     // Allocate memory for two-dimensional array of pixels
-    unsigned char ** pixels_2d = new unsigned char * [ height ];
-    for ( unsigned i = 0; i < height; i++ ) {
-        pixels_2d [i] = new unsigned char [png_get_rowbytes(png_ptr, info_ptr)]; //png_get_rowbytes gets number of bytes to store a row
+    png_bytep * pixels_2d = (png_bytep*) malloc(sizeof(png_bytep) * height);
+    for (png_uint_32 y = 0; y < height; y++) {
+        pixels_2d[y] = (png_byte*) malloc(png_get_rowbytes(png_ptr, info_ptr));
     }
 
     //Read pixels
-    png_read_image(png_ptr, pixels_2d );
+    png_read_image(png_ptr, pixels_2d);
 
     //Allocate memory for the pixel data array
-    pixels = new unsigned char [width*height*4]; //4 means RGBA
+    png_byte * pixels = (png_byte*) malloc(width * height * 4);
 
     //Copy the data from 2d array to 1d
     for (unsigned i = 0; i < height; i++) {
@@ -77,6 +77,4 @@ CImage & CParserPNG::read() {
         }
     }
 
-    //Returns CImage in some interesting way, we still don't know if we need 2d or 1d etc
-    //(learn more about image you wanna implement)
 }

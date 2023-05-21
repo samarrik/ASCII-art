@@ -1,18 +1,17 @@
 #include "../headers/cfilter.h"
 
-CConvolution::CConvolution ( bool src )
-        : m_is_enabled(src)
-{}
+CConvolution::CConvolution ( int src )
+{
+    if ( src != -1)
+        m_convolution = src;
+}
+
 
 void CConvolution::apply() {
     //TODO
 }
 
-void CConvolution::save( bool src ){
-    m_is_enabled = src;
-}
-
-CFilter & CConvolution::set_default(){
-    m_is_enabled = false;
+CFilter & CConvolution::set_val(int src) {
+    m_convolution = src;
     return *this;
 }

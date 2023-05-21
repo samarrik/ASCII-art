@@ -8,11 +8,7 @@ void CContrast::apply() {
     //TODO
 }
 
-void CContrast::save( int src ){
+CFilter & CContrast::set_val( int src ){
     m_contrast = src;
-}
-
-CFilter & CContrast::set_default(){
-    m_contrast = 1;
     return *this;
 }

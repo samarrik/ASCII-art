@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "cimage.h"
+#include "sstorage.h"
 
 /**
  * The function reads the configuration file which was provided to the application
@@ -10,6 +11,6 @@
  * @exception runtime_error May throw a runtime error if the config file doesn't match the example or files
  * which were provided to the program don't exist/are broken
  */
-void readConfig( std::vector<CImage> &images );
+void readConfig( SStorage &images );
 
 #endif //READCONFIG

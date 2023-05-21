@@ -1,5 +1,7 @@
 #include "../headers/readConfig.h"
 #include "../headers/cfilter.h"
+#include "../headers/sstorage.h"
+#include "../headers/cextractor.h"
 #include <fstream>
 #include <exception>
 #include <string>
@@ -19,7 +21,7 @@
  *          -3  There is a problem with an image file
  *          //-3
  */
-bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, std::vector<CFilter> & default_filters )
+bool readImageSettings(std::ifstream &configFile, SStorage & images )
 {   
     //Strings to save parameter/filename/filetype
     std::string parameter;
@@ -30,10 +32,6 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
     std::string str_val;
     double db_val;
     int int_val;
-
-    //Local image which will be applied to that particular image
-    CFilters local_filters;
-    CImage * added_image = nullptr;
     
     //First of all filename and filetype should be read
     configFile >> parameter;
@@ -46,53 +44,58 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
         configFile >> filetype;
     } else return false;
 
-    //Add deafult "image" to the storage
-    images.addImage(CImage(filename));
+    //Add default "image" to the storage
+    images.image_files.push_back(new CImage());
+    images.image_files.back()->loadFilters(images.default_filters);
+    images.image_files.back()->loadNameType(filename, filetype);
 
     if ( filetype == "jpeg"){
-        //jpegparser
+        //TODO
     } else if (filetype == "png") {
-        //pngParser
+        CExtractorPNG png_image = CExtractorPNG(filename);
+        png_image.read();
+        images.image_files.back()->loadExtractedData(png_image.get_width(),png_image.get_height(),png_image.get_pixels());
     } else {
         return false; //wrong format
     }
 
     //Read image
-    while ( 1 ){
+    while ( true ){
         configFile >> parameter;
-        if ( parameter == "image_end;"){
-            added_image->saveFilters(local_filters);
+        //If the end of file was reached without the ending sequence (global_end;)
+        if ( configFile.eof() ){
+            break;
+        }
+
+        if ( parameter == "global_end;"){
             return true;
         }
         else if ( parameter == "gradient"){
             configFile >> str_val;
-            local_filters.setGradient(str_val);
+            images.image_files.back()->addFilter(new CGradient(str_val));
         }
         else if ( parameter == "negative"){
             configFile >> int_val;
-            local_filters.setNegative(int_val);
+            images.image_files.back()->addFilter(new CNegative(int_val));
         }
-        else if ( parameter == "size"){
-            configFile >> db_val;
-            local_filters.setSize(db_val);
-            continue;
+        else if ( parameter == "scale"){
+            configFile >> int_val;
+            images.image_files.back()->addFilter(new CScale(int_val));
         }
         else if ( parameter == "brightness"){
-            configFile >> db_val;
-            local_filters.setBrightness(db_val);
-        }
-        else if ( parameter == "rotation"){
             configFile >> int_val;
-            local_filters.setRotation(int_val);
+            images.image_files.back()->addFilter(new CBrightness(int_val));
+        }
+        else if ( parameter == "contrast"){
+            configFile >> int_val;
+            images.image_files.back()->addFilter(new CContrast(int_val));
         }
         else if ( parameter == "convolution"){
             configFile >> int_val;
-            local_filters.setConvolution(int_val);
-        }
-
-        //If the end of file was reched without the ending sequence (image_end;)
-        if ( configFile.eof() )
+            images.image_files.back()->addFilter(new CConvolution(int_val));
+        } else {
             break;
+        }
     }
 
     return false;
@@ -104,20 +107,20 @@ bool readImageSettings(std::ifstream &configFile, std::vector<CImage> & images, 
  * @param[in] default_filters image which will be used as default (being changed during this fun.)
  * @param[out] bool value which tells us if the read was successful or not
 */
-bool readGlobalSettings(std::ifstream & configFile, CFilters & default_filters)
+
+bool readGlobalSettings(std::ifstream & configFile, SStorage & images )
 {   
     //A string where parameter will be stored
     std::string parameter;
 
     //Variables for storing values of parameters
     std::string str_val;
-    double db_val;
     int int_val;
     
     //Read configuration
-    while ( 1 ){
+    while ( true ){
         configFile >> parameter;
-        //If the end of file was reched without the ending sequence (global_end;)
+        //If the end of file was reached without the ending sequence (global_end;)
         if ( configFile.eof() ){
             break;
         }
@@ -127,34 +130,36 @@ bool readGlobalSettings(std::ifstream & configFile, CFilters & default_filters)
         }
         else if ( parameter == "gradient"){
             configFile >> str_val;
-            default_filters.setGradient(str_val);
+            images.default_filters.push_back(new CGradient(str_val));
         }
         else if ( parameter == "negative"){
             configFile >> int_val;
-            default_filters.setNegative(int_val);
+            images.default_filters.push_back(new CNegative(int_val));
         }
-        else if ( parameter == "size"){
-            configFile >> db_val;
-            default_filters.setSize(db_val);
+        else if ( parameter == "scale"){
+            configFile >> int_val;
+            images.default_filters.push_back(new CScale(int_val));
         }
         else if ( parameter == "brightness"){
-            configFile >> db_val;
-            default_filters.setBrightness(db_val);
-        }
-        else if ( parameter == "rotation"){
             configFile >> int_val;
-            default_filters.setRotation(int_val);
+            images.default_filters.push_back(new CBrightness(int_val));
+        }
+        else if ( parameter == "contrast"){
+            configFile >> int_val;
+            images.default_filters.push_back(new CContrast(int_val));
         }
         else if ( parameter == "convolution"){
             configFile >> int_val;
-            default_filters.setConvolution(int_val);
+            images.default_filters.push_back(new CConvolution(int_val));
+        } else {
+            break;
         }
     }
 
     return false;
 }
 
-void readConfig( std::vector<CImage> &images )
+void readConfig( SStorage &images )
 {
     // Opens a config.txt file located in directory assets/ and checks if it is there and readable
     std::ifstream configFile(CONFIG_PATH, std::ios::in); // std::ios::in means that file will be opened in read-only mode
@@ -163,14 +168,12 @@ void readConfig( std::vector<CImage> &images )
         throw std::runtime_error("An invalid config.txt was passed to converter.");
     }
 
-    //Default image will be set, if nothing will be changed
-    std::vector<CFilter> default_filters;
-    default_filters.push_back(CGradient().set_default());
-    default_filters.push_back(CContrast().set_default());
-    default_filters.push_back(CBrightness().set_default());
-    default_filters.push_back(CNegative().set_default());
-    default_filters.push_back(CScale().set_default());
-    default_filters.push_back(CConvolution().set_default());
+    images.default_filters.push_back(new CGradient());
+    images.default_filters.push_back(new CContrast());
+    images.default_filters.push_back(new CBrightness());
+    images.default_filters.push_back(new CNegative());
+    images.default_filters.push_back(new CScale());
+    images.default_filters.push_back(new CConvolution());
 
     //String which will be used for reading the header  
     std::string header;
@@ -182,17 +185,17 @@ void readConfig( std::vector<CImage> &images )
                 break;
 
         if ( header == "global:" ){
-            if ( ! readGlobalSettings(configFile, default_filters) )
+            if ( ! readGlobalSettings(configFile, images ) )
                 throw std::runtime_error("The structure of config.txt was violated in a block \"global\"");
             else {
                 std::cout << "Global settings were set!" << std::endl;
                 continue;
             }
 
-        } else if ( header == "image:"){
-            if ( ! readImageSettings(configFile, images, default_filters) )
+        } else if ( header == "image:") {
+            if ( ! readImageSettings( configFile, images ) ){
                 throw std::runtime_error("The structure of config.txt was violated in a block \"image\"");
-            else {
+            } else {
                 std::cout << "An image was loaded!" << std::endl;
                 continue;
             }
@@ -204,5 +207,4 @@ void readConfig( std::vector<CImage> &images )
     }
 
     configFile.close();
-    return;
 }

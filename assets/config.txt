@@ -1,8 +1,8 @@
 global:
 gradient $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. 
 negative 0
-size 1.0
-rotation -1
+scale 1
+contrast 0
 convolution 0
 global_end;
 
@@ -11,8 +11,8 @@ filename photo.png
 filetype png
 gradient  .:-=+*#%@"
 negative 1
-size 1
-rotation 0
+scale 10
+contrast 1
 convolution 0
 image_end;
 
@@ -21,7 +21,7 @@ filename photo2.jpeg
 filetype jpeg
 gradient  .:-=+*#%@"
 negative 1
-size 1
-rotation 0
+scale 5
+contrast 1
 convolution 0
 image_end;

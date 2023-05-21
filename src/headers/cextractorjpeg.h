@@ -10,7 +10,7 @@ class CExtractorJPEG : public CExtractor {
 
     ~CExtractorJPEG();
 
-    CImage & read() override;
+    void read() override;
 };
 
 #endif //EXTRACTORJPEG

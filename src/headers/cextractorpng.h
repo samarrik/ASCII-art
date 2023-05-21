@@ -8,13 +8,25 @@
 class CExtractorPNG : public CExtractor {
     public:
         //Create an instance of the parser, prepare it for reading
-        CExtractorPNG( std::string filename );
+        CExtractorPNG( const std::string & filename );
 
         //Delete an instance of the parser
         ~CExtractorPNG();
 
+        unsigned get_width() const {
+            return width;
+        }
+
+        unsigned get_height() const {
+            return width;
+        }
+
+        unsigned char * get_pixels (){
+            return pixels;
+        }
+
         //Read data from the image
-        CImage & read() override;
+        void read() override;
     
     private:
         std::string filename;

@@ -2,12 +2,12 @@
 #include "../headers/convertToAscii.h"
 #include "../headers/presentResults.h"
 #include "../headers/readConfig.h"
-#include <vector>
+#include "../headers/sstorage.h"
 
 int main(int argc, char *argv[])
 {
     // Initialize a storage
-    std::vector<CImage> images;
+    SStorage images;
 
     try
     {

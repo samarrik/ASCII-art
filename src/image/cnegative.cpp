@@ -1,18 +1,16 @@
 #include "../headers/cfilter.h"
 
-CNegative::CNegative ( bool src )
-        : m_is_enabled(src)
-{}
+CNegative::CNegative ( int src )
+{
+    if ( src != -1 )
+        m_negative = src;
+}
 
 void CNegative::apply() {
     //TODO
 }
 
-void CNegative::save( bool src ){
-    m_is_enabled = src;
-}
-
-CFilter & CNegative::set_default(){
-    m_is_enabled = false;
+CFilter & CNegative::set_val(int src) {
+    m_negative = src;
     return *this;
 }

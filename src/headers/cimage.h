@@ -16,13 +16,19 @@ public:
     CImage();
 
     //Adds a filter to an image
-    void addFilter( CFilter & filter );
+    void addFilter( CFilter * filter );
 
     /**
      * A method applies image to an image
      * @param[in] filters A const reference to image for that image
     */
     void applyFilters();
+
+    /**
+     * A method loads filters
+     * @param[in] filters A const reference to image for that image
+    */
+    void loadFilters( std::vector<CFilter *> & src );
 
     /**
      * A method grayscale the image
@@ -42,22 +48,28 @@ public:
     /**
      * A method will print out an ASCII art
     */
-        void print() const noexcept;
+    void print() const noexcept;
+
+    void loadExtractedData( unsigned w, unsigned h, unsigned char * p );
+
+    void loadNameType ( std::string & filename, std::string & filetype);
 
     //!!
     friend class CFilter;
 
 private:
-        //A set of image to be applied
-        std::vector<CFilter> m_filters;
+        //A set of filters to be applied
+        std::vector<CFilter*> m_filters;
         //raw pixels data
-        char * m_image_data;
+        unsigned char * m_pixels;
         //ascii converted data
         char * m_ascii_data;
         //name of the image file
         std::string m_filename;
         //name of the file type
         std::string m_filetype;
+        unsigned m_width;
+        unsigned m_height;
 };
 
 #endif //IMAGE
