@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "cimage.h"
 
 class CFilter {
 public:
@@ -10,15 +11,18 @@ public:
 
     virtual ~CFilter() = default;
 
-    //Applies a filter to an image
-    virtual void apply() = 0;
+    /**
+     * The function is used to apply the filter on the picture.
+     * @param src A CImage object on which the filter will be applied
+     */
+    virtual void apply ( CImage & src ) = 0;
 };
 
 class CGradient : public CFilter {
 public:
     CGradient ( std::string src = "" );
 
-    void apply() override;
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( const std::string & src );
 
@@ -28,9 +32,9 @@ private:
 
 class CBrightness : public CFilter {
 public:
-    CBrightness ( int src = -1 );
+    CBrightness ( int src = -100 );
 
-    void apply() override;
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( int src );
 
@@ -40,9 +44,9 @@ private:
 
 class CContrast : public CFilter {
 public:
-    CContrast ( int src = -1 );
+    CContrast ( int src = -100 );
 
-    void apply() override;
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( int src );
 
@@ -52,9 +56,10 @@ private:
 
 class CNegative : public CFilter {
 public:
-    CNegative ( int src = -1 );
+    CNegative ( int src = -100 );
 
-    void apply() override;
+
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( int src );
 
@@ -64,9 +69,9 @@ private:
 
 class CScale : public CFilter {
 public:
-    CScale ( int src = -1 );
+    CScale ( int src = -100 );
 
-    void apply() override;
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( int src );
 
@@ -76,9 +81,9 @@ private:
 
 class CConvolution : public CFilter {
 public:
-    CConvolution ( int src = -1 );
+    CConvolution ( int src = -100 );
 
-    void apply() override;
+    void apply ( CImage & src ) override;
 
     CFilter & set_val( int src );
 

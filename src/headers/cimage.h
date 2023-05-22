@@ -54,8 +54,16 @@ public:
 
     void loadNameType ( std::string & filename, std::string & filetype);
 
-    //!!
-    friend class CFilter;
+    unsigned char * getPixels (){
+        return m_pixels;
+    }
+
+    void setGradient(   const std::string & src );
+
+    unsigned width () const;
+
+    unsigned height () const;
+
 
 private:
         //A set of filters to be applied
@@ -68,6 +76,7 @@ private:
         std::string m_filename;
         //name of the file type
         std::string m_filetype;
+        std::string m_gradient;
         unsigned m_width;
         unsigned m_height;
 };

@@ -26,6 +26,18 @@ void CImage::loadExtractedData( unsigned w, unsigned h, unsigned char * p ){
     m_pixels = p;
 }
 
+void CImage::setGradient( const std::string & src ) {
+    m_gradient = src;
+}
+
+unsigned CImage::width () const {
+    return m_width;
+}
+
+unsigned CImage::height () const {
+    return m_height;
+}
+
 void CImage::grayscale() {
     //TODO
 }
