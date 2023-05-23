@@ -1,4 +1,5 @@
 #include "cimage.h"
+#include "iostream"
 
 using namespace std;
 

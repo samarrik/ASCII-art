@@ -5,7 +5,7 @@
 using namespace std;
 
 CExtractorPNG::CExtractorPNG( const string & filename ){
-    
+
     //Open the file for reading
     FILE *fp = fopen(filename.c_str(), "rb");
     if ( fp == nullptr ) {
@@ -14,21 +14,22 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
 
     /**
      * Read first 8 bytes of the header to check if that file is PNG
-     * png_sig_cmp(header, 0, 8) returns 1 if it is png/0 if it isn't png
+     * png_sig_cmp(header, 0, 8) returns 0 if it is png/!=0 if it isn't png
     */
     png_byte header[8];
-    if ( png_sig_cmp(header, 0, 8) ) {
-        throw runtime_error("File has .png at the end, but it isn't truly a png file");
+    fread(header, 1, 8, fp);
+    if ( png_sig_cmp(header, 0, 8) != 0) {
+        throw runtime_error( string("File '" ).append(filename).append("' has .png at the end, but it isn't truly a png file" ) );
     }
 
     //Structure which will hold all info of the PNG file
-    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if ( png_ptr == nullptr ) {
         throw runtime_error("Can't create main png structure");
     }
 
     //Structure which will hold all additional info of the PNG file
-    png_infop info_ptr = png_create_info_struct(png_ptr);
+    info_ptr = png_create_info_struct(png_ptr);
     if ( info_ptr == nullptr ) {
         //Don't forget to destroy structure which was already created
         png_destroy_read_struct(&png_ptr, NULL, NULL);
@@ -39,7 +40,7 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
     png_init_io(png_ptr, fp);
 
     //Send an info that some bytes were already read (header check)
-    png_set_sig_bytes(png_ptr, 8);  
+    png_set_sig_bytes(png_ptr, 8);
 }
 
 CExtractorPNG::~CExtractorPNG(){
@@ -61,11 +62,17 @@ void CExtractorPNG::read() {
         pixels_2d[y] = (png_byte*) malloc(png_get_rowbytes(png_ptr, info_ptr));
     }
 
+    cout << "2d size: " <<  height * png_get_rowbytes(png_ptr, info_ptr) << endl;
+
     //Read pixels
     png_read_image(png_ptr, pixels_2d);
 
     //Allocate memory for the pixel data array
-    png_byte * pixels = (png_byte*) malloc(width * height * 4);
+    pixels = (png_byte*) malloc(width * height * 4);
+
+    cout << "1d size: " <<  width * height * 4 << endl;
+    cout << "just read w: " << width << endl;
+    cout << "just read h: " << height << endl;
 
     //Copy the data from 2d array to 1d
     for (unsigned i = 0; i < height; i++) {

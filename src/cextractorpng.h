@@ -20,7 +20,7 @@ class CExtractorPNG : public CExtractor {
         }
 
         unsigned get_height() const {
-            return width;
+            return height;
         }
 
         unsigned char * get_pixels (){

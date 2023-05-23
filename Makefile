@@ -33,7 +33,7 @@ run: compile
 clean:
 	rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	rm -fd $(OBJDIR)
-	rm -fdr $(DOCDIR)
+	rm -fdr -i $(DOCDIR)
 
 .PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)

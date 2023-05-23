@@ -64,12 +64,12 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
     //Read code
     while ( true ){
         configFile >> parameter;
-        //If the end of file was reached without the ending sequence (global_end;)
+        //If the end of file was reached without the ending sequence (image_end;)
         if ( configFile.eof() ){
             break;
         }
-
-        if ( parameter == "image_end;"){
+        // '\n' at the end is 100% important
+        if ( parameter == "image_end;" ){
             return true;
         }
         else if ( parameter == "gradient"){
@@ -96,6 +96,7 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
             configFile >> int_val;
             images.image_files.back()->addFilter(new CConvolution(int_val));
         } else {
+
             break;
         }
     }
@@ -188,7 +189,7 @@ void readConfig( SStorage &images )
 
         if ( header == "global:" ){
             if ( ! readGlobalSettings(configFile, images ) )
-                throw runtime_error("The structure of config.txt was violated in a block \"global\"");
+                throw runtime_error("An error in config.txt while reading \"global\" unit");
             else {
                 cout << "Global settings were set!" << endl;
                 continue;
@@ -196,9 +197,9 @@ void readConfig( SStorage &images )
 
         } else if ( header == "image:") {
             if ( ! readImageSettings( configFile, images ) ){
-                throw runtime_error("The structure of config.txt was violated in a block \"image\"");
+                throw runtime_error("An error in config.txt while reading \"image\" unit");
             } else {
-                cout << "An code was loaded!" << endl;
+                cout << "An Image was loaded!" << endl;
                 continue;
             }
 

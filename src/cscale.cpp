@@ -1,4 +1,5 @@
 #include "cimage.h"
+#include <iostream>
 
 using namespace std;
 
@@ -9,7 +10,9 @@ CScale::CScale ( int src )
 }
 
 void CScale::apply( CImage & src ){
+    cout << "Scale" << endl;
     //TODO:
+    cout << "Scale was set!" << endl;
 }
 
 CFilter & CScale::set_val( int src ){

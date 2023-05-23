@@ -9,19 +9,9 @@ global_end;
 image:
 filename photo.png
 filetype png
-gradient  .:-=+*#%@"
+gradient  .:-=+*#%@
 negative 1
-scale 10
-contrast 1
-convolution 0
-image_end;
-
-image:
-filename photo2.jpeg
-filetype jpeg
-gradient  .:-=+*#%@"
-negative 1
-scale 5
+scale 1
 contrast 1
 convolution 0
 image_end;

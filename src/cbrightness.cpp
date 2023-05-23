@@ -1,5 +1,6 @@
 #include "cimage.h"
 #include <stdexcept>
+#include <iostream>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ CBrightness::CBrightness ( int src )
 }
 
 void CBrightness::apply( CImage & src ){
+    cout << "Brightness:" << endl;
     //Gets an array of pixels from a code
     unsigned char * pixels = src.getPixels();
 
@@ -21,13 +23,17 @@ void CBrightness::apply( CImage & src ){
     } else {
         //Changes the brightness of each pixel
         m_brightness *= 10;
-        for ( unsigned i = 0; i < (src.width()*src.height()); i += 4 ){
-            pixels[i] += m_brightness;
-            pixels[i+1] += m_brightness;
-            pixels[i+2] += m_brightness;
+        cout << "brightness size: " << (src.width()*src.height()*4) << endl;
+        cout << "brightness w: " << src.width() << endl;
+        cout << "brightness h: " << src.height() << endl;
+        for ( unsigned i = 0; i < (src.width()*src.height()*4); i += 4 ){
+            pixels[i] = min( pixels[i] + m_brightness,255);
+            pixels[i+1] = min( pixels[i+1] + m_brightness,255);
+            pixels[i+2] = min( pixels[i+2] + m_brightness,255);
             //the fourth pixel is being skipped (A pixel)
         }
     }
+    cout << "Brightness was set!" << endl;
 }
 
 CFilter & CBrightness::set_val( int src ){

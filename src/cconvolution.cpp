@@ -1,4 +1,5 @@
 #include "cimage.h"
+#include <iostream>
 
 using namespace std;
 
@@ -10,7 +11,9 @@ CConvolution::CConvolution ( int src )
 
 
 void CConvolution::apply( CImage & src ){
+    cout << "Convolution" << endl;
     //TODO:
+    cout << "Convolution was set!" << endl;
 }
 
 CFilter & CConvolution::set_val(int src) {
