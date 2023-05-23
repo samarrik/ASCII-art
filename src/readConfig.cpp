@@ -1,7 +1,8 @@
-#include "../headers/readConfig.h"
-#include "../headers/cfilter.h"
-#include "../headers/sstorage.h"
-#include "../headers/cextractor.h"
+#include "readConfig.h"
+#include "cfilter.h"
+#include "sstorage.h"
+#include "cextractor.h"
+#include "cextractorpng.h"
 #include <fstream>
 #include <exception>
 #include <string>
@@ -18,7 +19,7 @@
  * @returns 1   When data was read without any problems && global_end; / image_end; was read
  *          -1  When the end of file was read / other structure violations
  *          -2  When no filename/filetype was read
- *          -3  There is a problem with an image file
+ *          -3  There is a problem with an code file
  *          //-3
  */
 bool readImageSettings(std::ifstream &configFile, SStorage & images )
@@ -44,7 +45,7 @@ bool readImageSettings(std::ifstream &configFile, SStorage & images )
         configFile >> filetype;
     } else return false;
 
-    //Add default "image" to the storage
+    //Add default "code" to the storage
     images.image_files.push_back(new CImage());
     images.image_files.back()->loadFilters(images.default_filters);
     images.image_files.back()->loadNameType(filename, filetype);
@@ -59,7 +60,7 @@ bool readImageSettings(std::ifstream &configFile, SStorage & images )
         return false; //wrong format
     }
 
-    //Read image
+    //Read code
     while ( true ){
         configFile >> parameter;
         //If the end of file was reached without the ending sequence (global_end;)
@@ -104,7 +105,7 @@ bool readImageSettings(std::ifstream &configFile, SStorage & images )
 /**
  * Function reads "global" parameters set in config.txt
  * @param[in] configFile fstream of config.txt
- * @param[in] default_filters image which will be used as default (being changed during this fun.)
+ * @param[in] default_filters code which will be used as default (being changed during this fun.)
  * @param[out] bool value which tells us if the read was successful or not
 */
 
@@ -192,11 +193,11 @@ void readConfig( SStorage &images )
                 continue;
             }
 
-        } else if ( header == "image:") {
+        } else if ( header == "code:") {
             if ( ! readImageSettings( configFile, images ) ){
-                throw std::runtime_error("The structure of config.txt was violated in a block \"image\"");
+                throw std::runtime_error("The structure of config.txt was violated in a block \"code\"");
             } else {
-                std::cout << "An image was loaded!" << std::endl;
+                std::cout << "An code was loaded!" << std::endl;
                 continue;
             }
 

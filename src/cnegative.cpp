@@ -1,4 +1,4 @@
-#include "../headers/cfilter.h"
+#include "cfilter.h"
 
 CNegative::CNegative ( int src )
 {
@@ -6,8 +6,8 @@ CNegative::CNegative ( int src )
         m_negative = src;
 }
 
-void CNegative::apply() {
-    //TODO
+void CNegative::apply( CImage & src ){
+    //TODO:
 }
 
 CFilter & CNegative::set_val(int src) {

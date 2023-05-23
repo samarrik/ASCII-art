@@ -1,4 +1,4 @@
-#include "../headers/cextractorpng.h"
+#include "cextractorpng.h"
 #include <iostream>
 #include <exception>
 
@@ -33,7 +33,7 @@ CExtractorPNG::CExtractorPNG( const std::string & filename ){
         throw std::runtime_error("Can't create info struct");
     }
 
-    //Connect structure for reading with the image
+    //Connect structure for reading with the code
     png_init_io(png_ptr, fp);
 
     //Send an info that some bytes were already read (header check)
@@ -47,7 +47,7 @@ CExtractorPNG::~CExtractorPNG(){
 }
 
 void CExtractorPNG::read() {
-    //Read info of the image (up to actual image data)
+    //Read info of the code (up to actual code data)
     png_read_info(png_ptr, info_ptr);
 
     //Get information from info_ptr

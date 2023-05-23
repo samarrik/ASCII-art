@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../headers/convertToAscii.h"
-#include "../headers/presentResults.h"
-#include "../headers/readConfig.h"
-#include "../headers/sstorage.h"
+#include "convertToAscii.h"
+#include "presentResults.h"
+#include "readConfig.h"
+#include "sstorage.h"
 
 int main(int argc, char *argv[])
 {

@@ -2,8 +2,6 @@
 #define EXTRACTOR
 
 #include "cimage.h"
-#include "cextractorpng.h"
-#include "cextractorjpeg.h"
 
 /**
  * An abstract base class for all parsers
@@ -18,7 +16,7 @@ class CExtractor {
         virtual ~CExtractor();
 
         /**
-         * A virtual method reads image data from the file
+         * A virtual method reads code data from the file
         */
         virtual void read() = 0;
 };

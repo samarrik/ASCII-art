@@ -1,4 +1,4 @@
-#include "../headers/cfilter.h"
+#include "cfilter.h"
 
 CScale::CScale ( int src )
 {
@@ -6,8 +6,8 @@ CScale::CScale ( int src )
         m_scale = src;
 }
 
-void CScale::apply() {
-    //TODO
+void CScale::apply( CImage & src ){
+    //TODO:
 }
 
 CFilter & CScale::set_val( int src ){

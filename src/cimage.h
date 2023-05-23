@@ -6,7 +6,7 @@
 #include "cfilter.h"
 
 /**
- * An base class which represents an image
+ * An base class which represents an code
  * provided by a user to be proceed in an ASCII art
 */
 class CImage {
@@ -15,28 +15,28 @@ public:
     //implicit constructor with default(programmed) parameters
     CImage();
 
-    //Adds a filter to an image
+    //Adds a filter to an code
     void addFilter( CFilter * filter );
 
     /**
-     * A method applies image to an image
-     * @param[in] filters A const reference to image for that image
+     * A method applies code to an code
+     * @param[in] filters A const reference to code for that code
     */
     void applyFilters();
 
     /**
      * A method loads filters
-     * @param[in] filters A const reference to image for that image
+     * @param[in] filters A const reference to code for that code
     */
     void loadFilters( std::vector<CFilter *> & src );
 
     /**
-     * A method grayscale the image
+     * A method grayscale the code
     */
     void grayscale();
 
     /**
-    * A method converts an image to ASCII
+    * A method converts an code to ASCII
     */
     void convert();
 
@@ -60,9 +60,18 @@ public:
 
     void setGradient(   const std::string & src );
 
+    std::string & getGradient();
+
     unsigned width () const;
 
     unsigned height () const;
+
+    void loadConvertedToAscii ( std::string & src );
+
+    std::string & getonvertedToAscii ( );
+
+    size_t lengthGradient();
+
 
 
 private:
@@ -71,8 +80,8 @@ private:
         //raw pixels data
         unsigned char * m_pixels;
         //ascii converted data
-        char * m_ascii_data;
-        //name of the image file
+        std::string m_ascii_data;
+        //name of the code file
         std::string m_filename;
         //name of the file type
         std::string m_filetype;

@@ -151,7 +151,7 @@ function SearchBox(name, resultsPath, extension)
       clearTimeout(this.hideTimeout);
       this.hideTimeout=0;
     }
-    return false; // to avoid "image drag" default event
+    return false; // to avoid "code drag" default event
   }
 
   this.OnSearchSelectHide = function()

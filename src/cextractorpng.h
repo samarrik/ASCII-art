@@ -25,7 +25,7 @@ class CExtractorPNG : public CExtractor {
             return pixels;
         }
 
-        //Read data from the image
+        //Read data from the code
         void read() override;
     
     private:

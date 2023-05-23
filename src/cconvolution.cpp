@@ -1,4 +1,4 @@
-#include "../headers/cfilter.h"
+#include "cfilter.h"
 
 CConvolution::CConvolution ( int src )
 {
@@ -7,8 +7,8 @@ CConvolution::CConvolution ( int src )
 }
 
 
-void CConvolution::apply() {
-    //TODO
+void CConvolution::apply( CImage & src ){
+    //TODO:
 }
 
 CFilter & CConvolution::set_val(int src) {

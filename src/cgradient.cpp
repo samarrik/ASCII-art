@@ -1,5 +1,4 @@
-#include "../headers/cfilter.h"
-#include "../headers/cimage.h"
+#include "cfilter.h"
 
 CGradient::CGradient ( std::string src ) {
     //If the object was created without passing any data into it, the default value will be set automatically;

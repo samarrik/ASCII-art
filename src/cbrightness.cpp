@@ -1,4 +1,4 @@
-#include "../headers/cfilter.h"
+#include "cfilter.h"
 #include <stdexcept>
 
 CBrightness::CBrightness ( int src )
@@ -10,7 +10,7 @@ CBrightness::CBrightness ( int src )
 }
 
 void CBrightness::apply( CImage & src ){
-    //Gets an array of pixels from an image
+    //Gets an array of pixels from an code
     unsigned char * pixels = src.getPixels();
 
     //Check if the brightness is in the "valid" range
