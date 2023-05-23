@@ -38,7 +38,7 @@ void convertToAscii (SStorage & images ) {
         int cnt_write = 0; //!
         cout << "ascii string size:" << image->getonvertedToAscii().size() << endl;
         for ( unsigned i = 0, g = 0; i < image->height(); i++, g++ ){
-            for ( unsigned j = 0; j < image->width(); j++, g++){
+            for ( unsigned j = 0; j < image->width()-1; j++, g++){
                 outputFile << image->getonvertedToAscii()[g];
                 outputFile << image->getonvertedToAscii()[g];
 //                cout << "char to show:" << image->getonvertedToAscii()[g] << endl;

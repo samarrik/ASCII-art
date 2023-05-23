@@ -42,8 +42,9 @@ unsigned CImage::height () const {
 }
 
 void CImage::grayscale() {
-    for ( unsigned i = 0; i < m_width * m_height; i += 4 ) {
-        int grayscaled = int(0.2125 * m_pixels[i] + 0.7153 * m_pixels[i+i] + 0.0722 * m_pixels [i+2]);
+    cout << m_width * m_height * 4 << ": grayscaled sizes" << endl;
+    for ( unsigned i = 0; i < m_width * m_height * 4; i += 4 ) {
+        int grayscaled = int(0.2125 * m_pixels[i] + 0.7153 * m_pixels[i+1] + 0.0722 * m_pixels [i+2]);
         m_pixels[i] = grayscaled;
         m_pixels[i+1] = grayscaled;
         m_pixels[i+2] = grayscaled;

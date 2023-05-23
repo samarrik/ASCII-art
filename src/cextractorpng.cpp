@@ -1,6 +1,7 @@
 #include "cextractorpng.h"
 #include <iostream>
 #include <exception>
+#include <cstring>
 
 using namespace std;
 
@@ -85,5 +86,9 @@ void CExtractorPNG::read() {
             dst[3] = pixel[3]; // Alpha
         }
     }
+//    for (int y = 0; y < height; y++) {
+//        memcpy(pixels + (y * width), pixels_2d[y], width);
+//    }
+
 
 }
