@@ -1,15 +1,14 @@
-OUT    = ascii 														#name of the output file
-CXX    = g++														#compiler
-LD     = g++														#linker
-CXXFLAGS   = -std=c++17 -Wall -pedantic -Wextra -O2					#flags to compile
-LIBS   = -lpng -ljpeg												#libraries used in the project
-SRCDIR = src														#specifuying source directory
-OBJDIR = build														#build directory
-DOCDIR    = doc														#documentation directory
-SRC    = $(wildcard $(SRCDIR)/*.cpp)								#cpp files
-OBJS   = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC) )		#objects
-HEADERS = $(wildcard src/*.h)										#headers
-
+OUT    = ascii
+CXX    = g++
+LD     = g++
+CXXFLAGS   = -std=c++17 -Wall -pedantic -Wextra -O2
+LIBS   = -lpng -ljpeg
+SRCDIR = src
+OBJDIR = build
+DOCDIR = doc
+SRC    = $(wildcard $(SRCDIR)/*.cpp)
+OBJS   = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC) )
+HEADERS = $(wildcard src/*.h)
 
 .PHONY: all
 all: compile
@@ -17,14 +16,14 @@ all: compile
 .PHONY: compile
 compile: $(OBJDIR)/$(OUT)
 
-$(OBJDIR)/$(OUT): $(OBJS)
+$(OBJDIR)/$(OUT): $(OBJS)											# '|' means separator
 	$(LD) $(CXXFLAGS) -o $@  $^ $(LIBS)								#link the target from all prerequisites
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)							# '|' means separator
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -MMD -c -o $@  $<							#compile each cpp file + make dependencies
 
 $(OBJDIR):
-	mkdir $@														#make the build directory
+	mkdir -p $@														#make the build directory
 
 .PHONY: run
 run: compile
@@ -37,8 +36,8 @@ clean:
 	rm -fdr $(DOCDIR)
 
 .PHONY: doc															#generates all documentation
-doc: Doxyfile $(HEADERS)
-	mkdir $(DOCDIR)
+doc: Doxyfile $(HEADERS) | $(DOCDIR)
+	mkdir -p $(DOCDIR)
 	doxygen Doxyfile
 
 .PHONY: pack														#makes a zip with the project

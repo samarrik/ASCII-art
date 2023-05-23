@@ -1,5 +1,7 @@
 #include "cfilter.h"
 
+using namespace std;
+
 CContrast::CContrast ( int src )
         : m_contrast(src)
 {}

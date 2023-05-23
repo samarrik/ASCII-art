@@ -1,5 +1,7 @@
 #include "presentResults.h"
 
-void presentResults( std::vector<CImage> &images ){
+using namespace std;
+
+void presentResults( vector<CImage> &images ){
     //TODO
 }

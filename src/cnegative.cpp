@@ -1,5 +1,7 @@
 #include "cfilter.h"
 
+using namespace std;
+
 CNegative::CNegative ( int src )
 {
     if ( src != -1 )

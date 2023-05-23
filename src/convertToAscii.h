@@ -5,6 +5,8 @@
 #include <vector>
 #include "sstorage.h"
 
+using namespace std;
+
 /**
  * The function converts images to ASCII-arts, saves results in %name of the code%.txt files
  * @param[in] images A container of images to be converted

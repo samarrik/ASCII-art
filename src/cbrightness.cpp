@@ -1,6 +1,8 @@
 #include "cfilter.h"
 #include <stdexcept>
 
+using namespace std;
+
 CBrightness::CBrightness ( int src )
 {
     //If the object was created without passing any data into it, the default value will be set automatically;
@@ -10,12 +12,12 @@ CBrightness::CBrightness ( int src )
 }
 
 void CBrightness::apply( CImage & src ){
-    //Gets an array of pixels from an code
+    //Gets an array of pixels from a code
     unsigned char * pixels = src.getPixels();
 
     //Check if the brightness is in the "valid" range
     if ( m_brightness > 5 || m_brightness < -5 ) {
-        throw std::out_of_range("The brightness value is out of the range");
+        throw out_of_range("The brightness value is out of the range");
     } else {
         //Changes the brightness of each pixel
         m_brightness *= 10;

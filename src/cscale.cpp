@@ -1,5 +1,7 @@
 #include "cfilter.h"
 
+using namespace std;
+
 CScale::CScale ( int src )
 {
     if ( src != -1 )

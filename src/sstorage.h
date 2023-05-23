@@ -5,9 +5,11 @@
 #include "cimage.h"
 #include "cfilter.h"
 
+using namespace std;
+
 struct SStorage {
-    std::vector<CImage*> image_files;
-    std::vector<CFilter*> default_filters;
+    vector<CImage*> image_files;
+    vector<CFilter*> default_filters;
 };
 
 #endif //STORAGE

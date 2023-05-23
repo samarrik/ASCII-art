@@ -1,1 +1,2 @@
 //TODO:
+using namespace std;

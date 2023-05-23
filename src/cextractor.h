@@ -3,6 +3,8 @@
 
 #include "cimage.h"
 
+using namespace std;
+
 /**
  * An abstract base class for all parsers
 */

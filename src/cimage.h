@@ -5,6 +5,8 @@
 #include <vector>
 #include "cfilter.h"
 
+using namespace std;
+
 /**
  * An base class which represents an code
  * provided by a user to be proceed in an ASCII art
@@ -15,7 +17,7 @@ public:
     //implicit constructor with default(programmed) parameters
     CImage();
 
-    //Adds a filter to an code
+    //Adds a filter to a code
     void addFilter( CFilter * filter );
 
     /**
@@ -28,7 +30,7 @@ public:
      * A method loads filters
      * @param[in] filters A const reference to code for that code
     */
-    void loadFilters( std::vector<CFilter *> & src );
+    void loadFilters( vector<CFilter *> & src );
 
     /**
      * A method grayscale the code
@@ -52,23 +54,23 @@ public:
 
     void loadExtractedData( unsigned w, unsigned h, unsigned char * p );
 
-    void loadNameType ( std::string & filename, std::string & filetype);
+    void loadNameType ( string & filename, string & filetype);
 
     unsigned char * getPixels (){
         return m_pixels;
     }
 
-    void setGradient(   const std::string & src );
+    void setGradient(   const string & src );
 
-    std::string & getGradient();
+    string & getGradient();
 
     unsigned width () const;
 
     unsigned height () const;
 
-    void loadConvertedToAscii ( std::string & src );
+    void loadConvertedToAscii ( string & src );
 
-    std::string & getonvertedToAscii ( );
+    string & getonvertedToAscii ( );
 
     size_t lengthGradient();
 
@@ -76,16 +78,16 @@ public:
 
 private:
         //A set of filters to be applied
-        std::vector<CFilter*> m_filters;
+        vector<CFilter*> m_filters;
         //raw pixels data
         unsigned char * m_pixels;
         //ascii converted data
-        std::string m_ascii_data;
+        string m_ascii_data;
         //name of the code file
-        std::string m_filename;
+        string m_filename;
         //name of the file type
-        std::string m_filetype;
-        std::string m_gradient;
+        string m_filetype;
+        string m_gradient;
         unsigned m_width;
         unsigned m_height;
 };

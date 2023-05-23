@@ -5,6 +5,8 @@
 #include "cimage.h"
 #include "sstorage.h"
 
+using namespace std;
+
 /**
  * The function reads the configuration file which was provided to the application
  * @param[in] images A container where images will be stored

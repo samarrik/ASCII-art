@@ -12,6 +12,8 @@
 
 #define CONFIG_PATH "assets/config.txt"
 
+using namespace std;
+
 /**
  * A function which reads settings for images
  * @param[in] configFile An input filestream which carries data read from the config.txt file
@@ -22,16 +24,15 @@
  *          -3  There is a problem with an code file
  *          //-3
  */
-bool readImageSettings(std::ifstream &configFile, SStorage & images )
+bool readImageSettings(ifstream &configFile, SStorage & images )
 {   
     //Strings to save parameter/filename/filetype
-    std::string parameter;
-    std::string filename;
-    std::string filetype;
+    string parameter;
+    string filename;
+    string filetype;
 
     //Variables for storing values of parameters
-    std::string str_val;
-    double db_val;
+    string str_val;
     int int_val;
     
     //First of all filename and filetype should be read
@@ -109,13 +110,13 @@ bool readImageSettings(std::ifstream &configFile, SStorage & images )
  * @param[out] bool value which tells us if the read was successful or not
 */
 
-bool readGlobalSettings(std::ifstream & configFile, SStorage & images )
+bool readGlobalSettings(ifstream & configFile, SStorage & images )
 {   
     //A string where parameter will be stored
-    std::string parameter;
+    string parameter;
 
     //Variables for storing values of parameters
-    std::string str_val;
+    string str_val;
     int int_val;
     
     //Read configuration
@@ -163,10 +164,10 @@ bool readGlobalSettings(std::ifstream & configFile, SStorage & images )
 void readConfig( SStorage &images )
 {
     // Opens a config.txt file located in directory assets/ and checks if it is there and readable
-    std::ifstream configFile(CONFIG_PATH, std::ios::in); // std::ios::in means that file will be opened in read-only mode
+    ifstream configFile(CONFIG_PATH, ios::in); // ios::in means that file will be opened in read-only mode
     if (!configFile.is_open())
     {
-        throw std::runtime_error("An invalid config.txt was passed to converter.");
+        throw runtime_error("An invalid config.txt was passed to converter.");
     }
 
     images.default_filters.push_back(new CGradient());
@@ -177,7 +178,7 @@ void readConfig( SStorage &images )
     images.default_filters.push_back(new CConvolution());
 
     //String which will be used for reading the header  
-    std::string header;
+    string header;
     while ( true ){
         configFile >> header;
 
@@ -187,22 +188,22 @@ void readConfig( SStorage &images )
 
         if ( header == "global:" ){
             if ( ! readGlobalSettings(configFile, images ) )
-                throw std::runtime_error("The structure of config.txt was violated in a block \"global\"");
+                throw runtime_error("The structure of config.txt was violated in a block \"global\"");
             else {
-                std::cout << "Global settings were set!" << std::endl;
+                cout << "Global settings were set!" << endl;
                 continue;
             }
 
         } else if ( header == "code:") {
             if ( ! readImageSettings( configFile, images ) ){
-                throw std::runtime_error("The structure of config.txt was violated in a block \"code\"");
+                throw runtime_error("The structure of config.txt was violated in a block \"code\"");
             } else {
-                std::cout << "An code was loaded!" << std::endl;
+                cout << "An code was loaded!" << endl;
                 continue;
             }
 
         } else {
-            throw std::runtime_error("The structure of config.txt was violated (wrong header)");
+            throw runtime_error("The structure of config.txt was violated (wrong header)");
         
         }
     }

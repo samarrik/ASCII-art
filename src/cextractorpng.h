@@ -5,10 +5,12 @@
 #include "cextractor.h"
 #include <string>
 
+using namespace std;
+
 class CExtractorPNG : public CExtractor {
     public:
         //Create an instance of the parser, prepare it for reading
-        CExtractorPNG( const std::string & filename );
+        CExtractorPNG( const string & filename );
 
         //Delete an instance of the parser
         ~CExtractorPNG();
@@ -29,7 +31,7 @@ class CExtractorPNG : public CExtractor {
         void read() override;
     
     private:
-        std::string filename;
+        string filename;
         unsigned char * pixels;
         png_structp png_ptr;
         png_infop info_ptr;

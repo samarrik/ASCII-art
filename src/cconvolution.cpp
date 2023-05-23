@@ -1,5 +1,7 @@
 #include "cfilter.h"
 
+using namespace std;
+
 CConvolution::CConvolution ( int src )
 {
     if ( src != -1)

@@ -4,6 +4,8 @@
 #include "readConfig.h"
 #include "sstorage.h"
 
+using namespace std;
+
 int main(int argc, char *argv[])
 {
     // Initialize a storage
@@ -21,9 +23,9 @@ int main(int argc, char *argv[])
         presentResults( images );
     }
     //Catches all possible errors the program  may throw
-    catch (std::exception & e )
+    catch (exception & e )
     {
-        std::cout << "ERROR: " << e.what() << std::endl;
+        cout << "ERROR: " << e.what() << endl;
     }
 
     return EXIT_SUCCESS;

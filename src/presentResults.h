@@ -5,6 +5,8 @@
 #include "cimage.h"
 #include "sstorage.h"
 
+using namespace std;
+
 /**
  * The function communicates with a user and presents the results of conversion
  * @param[in] images A container of images to be presented

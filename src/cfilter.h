@@ -5,6 +5,8 @@
 #include <string>
 #include "cimage.h"
 
+using namespace std;
+
 class CFilter {
 public:
     CFilter() = default;
@@ -20,14 +22,14 @@ public:
 
 class CGradient : public CFilter {
 public:
-    CGradient ( std::string src = "" );
+    CGradient ( string src = "" );
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( const std::string & src );
+    CFilter & set_val( const string & src );
 
 private:
-    std::string m_gradient = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
+    string m_gradient = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
 };
 
 class CBrightness : public CFilter {

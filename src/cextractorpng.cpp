@@ -2,12 +2,14 @@
 #include <iostream>
 #include <exception>
 
-CExtractorPNG::CExtractorPNG( const std::string & filename ){
+using namespace std;
+
+CExtractorPNG::CExtractorPNG( const string & filename ){
     
     //Open the file for reading
     FILE *fp = fopen(filename.c_str(), "rb");
     if ( fp == nullptr ) {
-        throw std::runtime_error( "Image file can't be opened.\nCheck if the name of the file is valid." );
+        throw runtime_error( "Image file can't be opened.\nCheck if the name of the file is valid." );
     }
 
     /**
@@ -16,13 +18,13 @@ CExtractorPNG::CExtractorPNG( const std::string & filename ){
     */
     png_byte header[8];
     if ( png_sig_cmp(header, 0, 8) ) {
-        throw std::runtime_error("File has .png at the end, but it isn't truly a png file");
+        throw runtime_error("File has .png at the end, but it isn't truly a png file");
     }
 
     //Structure which will hold all info of the PNG file
     png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if ( png_ptr == nullptr ) {
-        throw std::runtime_error("Can't create main png structure");
+        throw runtime_error("Can't create main png structure");
     }
 
     //Structure which will hold all additional info of the PNG file
@@ -30,7 +32,7 @@ CExtractorPNG::CExtractorPNG( const std::string & filename ){
     if ( info_ptr == nullptr ) {
         //Don't forget to destroy structure which was already created
         png_destroy_read_struct(&png_ptr, NULL, NULL);
-        throw std::runtime_error("Can't create info struct");
+        throw runtime_error("Can't create info struct");
     }
 
     //Connect structure for reading with the code

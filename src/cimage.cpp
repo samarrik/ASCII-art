@@ -1,5 +1,7 @@
 #include "cimage.h"
 
+using namespace std;
+
 CImage::CImage(){}
 
 void CImage::addFilter( CFilter * filter ) {
@@ -11,11 +13,11 @@ void CImage::applyFilters() {
         filter->apply();
 }
 
-void CImage::loadFilters( std::vector<CFilter *> & src ) {
+void CImage::loadFilters( vector<CFilter *> & src ) {
     m_filters = src;
 }
 
-void CImage::loadNameType ( std::string & filename, std::string & filetype){
+void CImage::loadNameType ( string & filename, string & filetype){
     filename = filename;
     filetype = filetype;
 }
@@ -26,7 +28,7 @@ void CImage::loadExtractedData( unsigned w, unsigned h, unsigned char * p ){
     m_pixels = p;
 }
 
-void CImage::setGradient( const std::string & src ) {
+void CImage::setGradient( const string & src ) {
     m_gradient = src;
 }
 
@@ -48,11 +50,11 @@ void CImage::grayscale() {
     }
 }
 
-void CImage::loadConvertedToAscii ( std::string & src ){
+void CImage::loadConvertedToAscii ( string & src ){
     m_ascii_data = src;
 }
 
-std::string & CImage::getGradient(){
+string & CImage::getGradient(){
     return m_gradient;
 }
 
@@ -60,7 +62,7 @@ size_t CImage::lengthGradient(){
     return m_gradient.size();
 }
 
-std::string & CImage::getonvertedToAscii ( ){
+string & CImage::getonvertedToAscii ( ){
     return m_ascii_data;
 }
 

@@ -4,6 +4,8 @@
 #include "jpeglib.h"
 #include "cextractor.h"
 
+using namespace std;
+
 class CExtractorJPEG : public CExtractor {
 
     CExtractorJPEG();
