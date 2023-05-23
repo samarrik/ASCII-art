@@ -1,13 +1,19 @@
 var searchData=
 [
-  ['cimage_2ecpp_0',['cimage.cpp',['../cimage_8cpp.html',1,'']]],
-  ['cimage_2eh_1',['cimage.h',['../cimage_8h.html',1,'']]],
-  ['cparser_2ecpp_2',['cparser.cpp',['../cparser_8cpp.html',1,'']]],
-  ['cparser_2eh_3',['cparser.h',['../cparser_8h.html',1,'']]],
-  ['cparserjpeg_2ecpp_4',['cparserjpeg.cpp',['../cparserjpeg_8cpp.html',1,'']]],
-  ['cparserjpeg_2eh_5',['cparserjpeg.h',['../cparserjpeg_8h.html',1,'']]],
-  ['cparserpng_2ecpp_6',['cparserpng.cpp',['../cparserpng_8cpp.html',1,'']]],
-  ['cparserpng_2eh_7',['cparserpng.h',['../cparserpng_8h.html',1,'']]],
-  ['cstorage_2ecpp_8',['cstorage.cpp',['../cstorage_8cpp.html',1,'']]],
-  ['cstorage_2eh_9',['cstorage.h',['../cstorage_8h.html',1,'']]]
+  ['cbrightness_2ecpp_104',['cbrightness.cpp',['../cbrightness_8cpp.html',1,'']]],
+  ['ccontrast_2ecpp_105',['ccontrast.cpp',['../ccontrast_8cpp.html',1,'']]],
+  ['cconvolution_2ecpp_106',['cconvolution.cpp',['../cconvolution_8cpp.html',1,'']]],
+  ['cextractor_2eh_107',['cextractor.h',['../cextractor_8h.html',1,'']]],
+  ['cextractorjpeg_2ecpp_108',['cextractorjpeg.cpp',['../cextractorjpeg_8cpp.html',1,'']]],
+  ['cextractorjpeg_2eh_109',['cextractorjpeg.h',['../cextractorjpeg_8h.html',1,'']]],
+  ['cextractorpng_2ecpp_110',['cextractorpng.cpp',['../cextractorpng_8cpp.html',1,'']]],
+  ['cextractorpng_2eh_111',['cextractorpng.h',['../cextractorpng_8h.html',1,'']]],
+  ['cfilter_2eh_112',['cfilter.h',['../cfilter_8h.html',1,'']]],
+  ['cgradient_2ecpp_113',['cgradient.cpp',['../cgradient_8cpp.html',1,'']]],
+  ['cimage_2ecpp_114',['cimage.cpp',['../cimage_8cpp.html',1,'']]],
+  ['cimage_2eh_115',['cimage.h',['../cimage_8h.html',1,'']]],
+  ['cnegative_2ecpp_116',['cnegative.cpp',['../cnegative_8cpp.html',1,'']]],
+  ['converttoascii_2ecpp_117',['convertToAscii.cpp',['../convertToAscii_8cpp.html',1,'']]],
+  ['converttoascii_2eh_118',['convertToAscii.h',['../convertToAscii_8h.html',1,'']]],
+  ['cscale_2ecpp_119',['cscale.cpp',['../cscale_8cpp.html',1,'']]]
 ];

@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['read_0',['read',['../classCParser.html#a5dbb7554886e07e96e671669e7b53861',1,'CParser::read()'],['../classCParserJPEG.html#a1643acbf2c412632a3a4fa5af9985fdd',1,'CParserJPEG::read()'],['../classCParserPNG.html#a40c11e439ab3236045490f865544364f',1,'CParserPNG::read()']]],
-  ['rotation_1',['rotation',['../classCImage.html#a2051cc0e305078812eaccf373eccbb10',1,'CImage']]],
-  ['runpresentation_2',['runPresentation',['../main_8cpp.html#a953421c0a2099947ff664741bb559251',1,'main.cpp']]]
+  ['main_155',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]]
 ];

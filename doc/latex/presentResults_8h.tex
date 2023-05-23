@@ -1,0 +1,33 @@
+\hypertarget{presentResults_8h}{}\doxysection{src/present\+Results.h File Reference}
+\label{presentResults_8h}\index{src/presentResults.h@{src/presentResults.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}cimage.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sstorage.\+h\char`\"{}}\newline
+Include dependency graph for present\+Results.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{presentResults_8h_a4cd8441a8dded431993628140a8b4c4c}{present\+Results}} (\mbox{\hyperlink{structSStorage}{SStorage}} \&images)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{presentResults_8h_a4cd8441a8dded431993628140a8b4c4c}\label{presentResults_8h_a4cd8441a8dded431993628140a8b4c4c}} 
+\index{presentResults.h@{presentResults.h}!presentResults@{presentResults}}
+\index{presentResults@{presentResults}!presentResults.h@{presentResults.h}}
+\doxysubsubsection{\texorpdfstring{presentResults()}{presentResults()}}
+{\footnotesize\ttfamily void present\+Results (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSStorage}{SStorage}} \&}]{images }\end{DoxyParamCaption})}
+
+The function communicates with a user and presents the results of conversion 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em images} & A container of images to be presented \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+error} & May throw a runtime error if files with converted images don\textquotesingle{}t exist/ are broken \\
+\hline
+\end{DoxyExceptions}

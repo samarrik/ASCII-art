@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['negative_0',['negative',['../structCFilters.html#ad282e8045a69fb86ac29b7fbc0e8c61a',1,'CFilters']]]
+  ['height_46',['height',['../classCExtractorPNG.html#ab14bc9b4905e6359a821c37ce9ca12aa',1,'CExtractorPNG::height()'],['../classCImage.html#aa34a51a3eccdd76323466f6526dfab4f',1,'CImage::height()']]]
 ];

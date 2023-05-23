@@ -1,0 +1,6 @@
+\hypertarget{cbrightness_8cpp}{}\doxysection{src/cbrightness.cpp File Reference}
+\label{cbrightness_8cpp}\index{src/cbrightness.cpp@{src/cbrightness.cpp}}
+{\ttfamily \#include \char`\"{}cfilter.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+Include dependency graph for cbrightness.\+cpp\+:
+% FIG 0

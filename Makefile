@@ -5,7 +5,7 @@ CXXFLAGS   = -std=c++17 -Wall -pedantic -Wextra -O2					#flags to compile
 LIBS   = -lpng -ljpeg												#libraries used in the project
 SRCDIR = src														#specifuying source directory
 OBJDIR = build														#build directory
-DOC    = doc														#documentation directory
+DOCDIR    = doc														#documentation directory
 SRC    = $(wildcard $(SRCDIR)/*.cpp)								#cpp files
 OBJS   = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC) )		#objects
 HEADERS = $(wildcard src/*.h)										#headers
@@ -34,10 +34,11 @@ run: compile
 clean:
 	rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	rm -fd $(OBJDIR)
-	rm -fr $(DOC)/*
+	rm -fdr $(DOCDIR)
 
 .PHONY: doc															#generates all documentation
 doc: Doxyfile $(HEADERS)
+	mkdir $(DOCDIR)
 	doxygen Doxyfile
 
 .PHONY: pack														#makes a zip with the project

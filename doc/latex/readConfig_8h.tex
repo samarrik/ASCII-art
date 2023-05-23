@@ -1,0 +1,37 @@
+\hypertarget{readConfig_8h}{}\doxysection{src/read\+Config.h File Reference}
+\label{readConfig_8h}\index{src/readConfig.h@{src/readConfig.h}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}cimage.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sstorage.\+h\char`\"{}}\newline
+Include dependency graph for read\+Config.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{readConfig_8h_ac3a85c497b611b8c4bc6c0679a16efab}{read\+Config}} (\mbox{\hyperlink{structSStorage}{SStorage}} \&images)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{readConfig_8h_ac3a85c497b611b8c4bc6c0679a16efab}\label{readConfig_8h_ac3a85c497b611b8c4bc6c0679a16efab}} 
+\index{readConfig.h@{readConfig.h}!readConfig@{readConfig}}
+\index{readConfig@{readConfig}!readConfig.h@{readConfig.h}}
+\doxysubsubsection{\texorpdfstring{readConfig()}{readConfig()}}
+{\footnotesize\ttfamily void read\+Config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSStorage}{SStorage}} \&}]{images }\end{DoxyParamCaption})}
+
+The function reads the configuration file which was provided to the application 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em images} & A container where images will be stored \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em runtime\+\_\+error} & May throw a runtime error if the config file doesn\textquotesingle{}t match the example or files which were provided to the program don\textquotesingle{}t exist/are broken \\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+% FIG 2
+Here is the caller graph for this function\+:
+% FIG 3

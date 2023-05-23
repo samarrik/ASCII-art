@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['brightness_0',['brightness',['../structCFilters.html#a4f3cb813a8803fe419b34f38bf42b6e1',1,'CFilters']]]
+  ['bit_5fdepth_3',['bit_depth',['../classCExtractorPNG.html#add20d60ec30c1b301c22fddced433565',1,'CExtractorPNG']]]
 ];

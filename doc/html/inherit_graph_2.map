@@ -1,7 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classCParser.html" title=" " alt="" coords="5,31,76,56"/>
-<area shape="rect" id="Node000001" href="$classCParserJPEG.html" title=" " alt="" coords="124,5,225,31"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="89,32,123,25,124,30,90,37"/>
-<area shape="rect" id="Node000002" href="$classCParserPNG.html" title=" " alt="" coords="125,55,224,80"/>
-<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="90,49,125,56,125,61,89,55"/>
-</map>

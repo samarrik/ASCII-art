@@ -1,9 +1,15 @@
 var annotated_dup =
 [
-    [ "CFilters", "structCFilters.html", "structCFilters" ],
+    [ "CBrightness", "classCBrightness.html", "classCBrightness" ],
+    [ "CContrast", "classCContrast.html", "classCContrast" ],
+    [ "CConvolution", "classCConvolution.html", "classCConvolution" ],
+    [ "CExtractor", "classCExtractor.html", "classCExtractor" ],
+    [ "CExtractorJPEG", "classCExtractorJPEG.html", "classCExtractorJPEG" ],
+    [ "CExtractorPNG", "classCExtractorPNG.html", "classCExtractorPNG" ],
+    [ "CFilter", "classCFilter.html", "classCFilter" ],
+    [ "CGradient", "classCGradient.html", "classCGradient" ],
     [ "CImage", "classCImage.html", "classCImage" ],
-    [ "CParser", "classCParser.html", "classCParser" ],
-    [ "CParserJPEG", "classCParserJPEG.html", "classCParserJPEG" ],
-    [ "CParserPNG", "classCParserPNG.html", "classCParserPNG" ],
-    [ "CStorage", "classCStorage.html", "classCStorage" ]
+    [ "CNegative", "classCNegative.html", "classCNegative" ],
+    [ "CScale", "classCScale.html", "classCScale" ],
+    [ "SStorage", "structSStorage.html", "structSStorage" ]
 ];

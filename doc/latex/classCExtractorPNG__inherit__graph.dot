@@ -1,0 +1,9 @@
+digraph "CExtractorPNG"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{CExtractorPNG\n|- filename\l- pixels\l- png_ptr\l- info_ptr\l- width\l- height\l- bit_depth\l- color_type\l- interlace_method\l- compression_method\l- filter_method\l|+ CExtractorPNG()\l+ ~CExtractorPNG()\l+ get_width()\l+ get_height()\l+ get_pixels()\l+ read()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
+  Node2 [label="{CExtractor\n||+ CExtractor()\l+ ~CExtractor()\l+ read()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCExtractor.html",tooltip=" "];
+}

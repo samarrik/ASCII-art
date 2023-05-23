@@ -1,0 +1,20 @@
+digraph "readConfig"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="readConfig",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="readGlobalSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$readConfig_8cpp.html#a7f5e9acd14786211e729d06546ee3f5a",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="readImageSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$readConfig_8cpp.html#a1dcac510cdac9b9fc26e098ef3eef67e",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CExtractorPNG::get\l_height",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCExtractorPNG.html#a8cc49ac7ac3985a1d41448fc25ebd7f0",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CExtractorPNG::get\l_pixels",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCExtractorPNG.html#a8c95cdb797e138b86497c9a9f91394cc",tooltip=" "];
+  Node3 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CExtractorPNG::get\l_width",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCExtractorPNG.html#a32f9a55bad24a52c7dedab5817a6a0ca",tooltip=" "];
+  Node3 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="CExtractorPNG::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classCExtractorPNG.html#a7396095ab1cf3bb69706d584934d7c9f",tooltip=" "];
+}

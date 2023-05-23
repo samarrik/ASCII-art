@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['read_0',['read',['../classCParser.html#a5dbb7554886e07e96e671669e7b53861',1,'CParser::read()'],['../classCParserJPEG.html#a1643acbf2c412632a3a4fa5af9985fdd',1,'CParserJPEG::read()'],['../classCParserPNG.html#a40c11e439ab3236045490f865544364f',1,'CParserPNG::read()']]],
-  ['rotation_1',['rotation',['../structCFilters.html#af91c3d8cb13ecd0543539589c73e73c8',1,'CFilters::rotation'],['../classCImage.html#a2051cc0e305078812eaccf373eccbb10',1,'CImage::rotation()']]],
-  ['runpresentation_2',['runPresentation',['../main_8cpp.html#a953421c0a2099947ff664741bb559251',1,'main.cpp']]]
+  ['lengthgradient_50',['lengthGradient',['../classCImage.html#a2dc5f3ca8a9449321614d42cc4a79a1f',1,'CImage']]],
+  ['loadconvertedtoascii_51',['loadConvertedToAscii',['../classCImage.html#a9cf961e8a0689cdbaf1bf892d3c9c59c',1,'CImage']]],
+  ['loadextracteddata_52',['loadExtractedData',['../classCImage.html#acc0813870fda5433a1ee6a9455ba4e03',1,'CImage']]],
+  ['loadfilters_53',['loadFilters',['../classCImage.html#ad32d088a2ebb0181b6bdab10f28aa0c3',1,'CImage']]],
+  ['loadnametype_54',['loadNameType',['../classCImage.html#a4b910c38adedb89996f6d4202a7f33e5',1,'CImage']]]
 ];
