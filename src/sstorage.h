@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "cimage.h"
-#include "cfilter.h"
 
 using namespace std;
 

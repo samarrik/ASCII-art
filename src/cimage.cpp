@@ -10,7 +10,7 @@ void CImage::addFilter( CFilter * filter ) {
 
 void CImage::applyFilters() {
     for ( auto filter : m_filters )
-        filter->apply();
+        filter->apply(*this);
 }
 
 void CImage::loadFilters( vector<CFilter *> & src ) {

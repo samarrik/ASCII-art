@@ -16,14 +16,14 @@ all: compile
 .PHONY: compile
 compile: $(OBJDIR)/$(OUT)
 
-$(OBJDIR)/$(OUT): $(OBJS)											# '|' means separator
-	$(LD) $(CXXFLAGS) -o $@  $^ $(LIBS)								#link the target from all prerequisites
+$(OBJDIR)/$(OUT): $(OBJS)
+	$(LD) $(CXXFLAGS) -o $@  $^ $(LIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -MMD -c -o $@  $<							#compile each cpp file + make dependencies
+	$(CXX) $(CXXFLAGS) -MMD -c -o $@  $<
 
 $(OBJDIR):
-	mkdir -p $@														#make the build directory
+	mkdir -p $@
 
 .PHONY: run
 run: compile
@@ -35,14 +35,14 @@ clean:
 	rm -fd $(OBJDIR)
 	rm -fdr $(DOCDIR)
 
-.PHONY: doc															#generates all documentation
+.PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)
 	mkdir -p $(DOCDIR)
 	doxygen Doxyfile
 
-.PHONY: pack														#makes a zip with the project
+.PHONY: pack
 pack: clean
 	rm -f samariva.zip
-	ls . | zip -@ -r samariva.zip									# -@ takes file list from the input, -r recursively
+	ls . | zip -@ -r samariva.zip
 
 -include $(OBJDIR)/*.d

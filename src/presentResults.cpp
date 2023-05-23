@@ -2,6 +2,6 @@
 
 using namespace std;
 
-void presentResults( vector<CImage> &images ){
+void presentResults( SStorage &images ){
     //TODO
 }

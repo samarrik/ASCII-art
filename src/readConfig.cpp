@@ -1,5 +1,5 @@
 #include "readConfig.h"
-#include "cfilter.h"
+#include "cimage.h"
 #include "sstorage.h"
 #include "cextractor.h"
 #include "cextractorpng.h"
@@ -69,7 +69,7 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
             break;
         }
 
-        if ( parameter == "global_end;"){
+        if ( parameter == "image_end;"){
             return true;
         }
         else if ( parameter == "gradient"){
@@ -194,9 +194,9 @@ void readConfig( SStorage &images )
                 continue;
             }
 
-        } else if ( header == "code:") {
+        } else if ( header == "image:") {
             if ( ! readImageSettings( configFile, images ) ){
-                throw runtime_error("The structure of config.txt was violated in a block \"code\"");
+                throw runtime_error("The structure of config.txt was violated in a block \"image\"");
             } else {
                 cout << "An code was loaded!" << endl;
                 continue;

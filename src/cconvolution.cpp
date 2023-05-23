@@ -1,4 +1,4 @@
-#include "cfilter.h"
+#include "cimage.h"
 
 using namespace std;
 
