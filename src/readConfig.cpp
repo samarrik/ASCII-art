@@ -1,6 +1,6 @@
 #include "readConfig.h"
 #include "cimage.h"
-#include "sstorage.h"
+#include "cstorage.h"
 #include "cextractor.h"
 #include "cextractorpng.h"
 #include <fstream>
@@ -167,9 +167,10 @@ void readConfig( SStorage &images )
     ifstream configFile(CONFIG_PATH, ios::in); // ios::in means that file will be opened in read-only mode
     if (!configFile.is_open())
     {
-        throw runtime_error("An invalid config.txt was passed to converter.");
+        throw runtime_error("An invalid config.txt was passed to converter or it doesn't exist. (check assets/ folder)");
     }
 
+    //Set up default filters for all images
     images.default_filters.push_back(new CGradient());
     images.default_filters.push_back(new CContrast());
     images.default_filters.push_back(new CBrightness());

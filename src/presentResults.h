@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "cimage.h"
-#include "sstorage.h"
+#include "cstorage.h"
 
 using namespace std;
 
