@@ -26,11 +26,32 @@ Kde lze využít polymorfismus? (doporučené)
 ## How my implementation will work 
 * converter == ascii-art generator
 
-Converter will receive a config text file as an argument. This file should be filled
-by a user according to the template^. As a result converter will receive a file with
-default specifications for ASCII converting(filters), image files and specifications for the
-conversion of each file (filters).
+Converter will process a config.txt file in assets/ where all information for conversion will be provided
+This file should be filled by a user according to the template^. As a result converter will receive a file with
+default filters for ASCII conversion, image files and filters for the conversion of each file.
 
+^:  File should be filled accurately according to the template or the error message will be sent!
+    1. There are two types of blocks that can be in this file:
+        -> global   ( global filters, set as default, if there won't be specified explicit filters for the image, those will be used)
+        -> image    ( filters for each image )
+    2. Each block has filters + setting which can be specified in it ( format := filter_name ( values to be passed ) info example)
+        -> global   -> gradient     ( a string of chars you want to use as gradient ) String should have chars from the darkest one the brightest   .*OM#
+                    -> brightness   ( [-5;5] )                                        Where -5 is the darkest, 5 is the brightest                   5
+                    -> negative     ( {0;1} )                                         Where 0 is natural, 1 is negative                             1
+                    -> contrast     ( [-5;5] )                                        Where -5 is the least contrast, 5 is the most contrast        5
+                    -> scale        ( [-5;5] )                                        Where -5 is the smallest, 5 is the biggest                    5
+                    -> convolution  ( {0;1} )                                         Where 0 is natural, 1 is with convolution                     1
+        -> image    *! The first two settings should always be the same
+                    -> filename     ( a string of chars which is the name of the file with dot and filetype ) Doublecheck the name of your file     photo.png
+                    -> filetype     ( a string which is the filetype of the file you've written above ) Pass only the type, without the dot         png
+                    * other filters are totally the same as filters of the 'global block'
+    3. Notes:       1. Don't make mess in the file, or you will receive an error ;)
+                    2. If you want you can separate blocks by '\n'
+                    3. In the assets/ you already have config.txt template, so you can just adjust already prepared config how you want
+
+How it works:
+
+///////////////////NOT READY YET!!!!!!!!!!!!!!!!!!!!!!!!!!!
 1. Converter will read the config file, set default filters. 
 2. Info about each image will be read (loop) ^^
     ->  Filename and filetype will be read firstly and a parser will be chosen. (There is a CParser abstract class which has child CParser*** (*** -> for all formats))
@@ -45,3 +66,4 @@ conversion of each file (filters).
 Polymorfism will be 'between' CParser(abstract parent) and CParserJPEG(child), CParserPNG(child) ... etc.
 That will ensure that image data will be extracted from each image type without any problems. All parsers
 will return an instance of CImage class which will be stored in the CStorage;
+///////////////////NOT READY YET!!!!!!!!!!!!!!!!!!!!!!!!!!!

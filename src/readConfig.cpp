@@ -96,7 +96,6 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
             configFile >> int_val;
             images.image_files.back()->addFilter(new CConvolution(int_val));
         } else {
-
             break;
         }
     }
