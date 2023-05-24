@@ -1,5 +1,5 @@
 global:
-gradient $@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. 
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 negative 0
 scale 1
 contrast 0
@@ -9,9 +9,10 @@ global_end;
 image:
 filename photo.png
 filetype png
-gradient  .:-=+*#%@
-negative 1
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness 0
+negative 0
 scale 1
-contrast 1
+contrast -5
 convolution 0
 image_end;

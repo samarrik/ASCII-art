@@ -20,8 +20,17 @@ void convertToAscii (SStorage & images ) {
         cout << "lengthGradient: " << image->lengthGradient() << endl;
         int cnt_store = 0; //!
         for ( int i = 0; i < image->width()*image->height()*4; i+= 4 ) {
-            ascii.push_back((image->getGradient())[pixels[i] % image->lengthGradient()]);
-//            cout << "char to store:" << (image->getGradient())[pixels[i] % image->lengthGradient()] << endl;
+            /**
+             * Calculate which character to use;
+             */
+             string gradient ( image->getGradient() );
+             int size = gradient.size();
+             int weight_per_char = 255/size;
+             if ( pixels[i] > 5 ) {
+                 ascii.push_back((image->getGradient())[min(pixels[i] / weight_per_char, size - 1)]);
+             } else {
+                 ascii.push_back(' ');
+             }
             cnt_store++;
         }
         cout << "to_store:" << cnt_store << endl;
@@ -41,7 +50,7 @@ void convertToAscii (SStorage & images ) {
             for ( unsigned j = 0; j < image->width()-1; j++, g++){
                 outputFile << image->getonvertedToAscii()[g];
                 outputFile << image->getonvertedToAscii()[g];
-//                cout << "char to show:" << image->getonvertedToAscii()[g] << endl;
+                outputFile << image->getonvertedToAscii()[g];
             cnt_write ++;
             }
             outputFile << '\n';
