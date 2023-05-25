@@ -43,7 +43,7 @@ public:
     CImage() = default;
 
     //Initializes an image using given filters, filename and filetype
-    CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height);
+    CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height );
 
     //Adds a filter to a code
     void addFilter( CFilter * filter );
@@ -104,6 +104,7 @@ private:
         string m_gradient;
         unsigned m_width{};
         unsigned m_height{};
+        bool is_scaled;
 };
 
 #endif //IMAGE

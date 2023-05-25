@@ -15,33 +15,52 @@ void CScale::apply( CImage & src ){
         throw out_of_range("The scale value is out of the range");
     } else {
         //Checking if there is a sense in performing an algo at all
-        if ( m_scale != 0 ) {
+        if (m_scale != 0) {
+            // Scaling using nearest neighbor
 
-            //Scaling using nearest neighbour :)
-
-            //Finding the scale factor
-            double scale_factor;
-            if ( m_scale >= 0 ) {
-                scale_factor = (0.1 * m_scale) + 1;
+            // Calculate scaled dimensions
+            unsigned scaled_height, scaled_width;
+            if (m_scale < 0) {
+                scaled_height = src.height() * (-m_scale);
+                scaled_width = src.width() * (-m_scale);
             } else {
-                scale_factor = 1 - (0.1 * m_scale);
+                scaled_height = src.height() / (m_scale + 1);
+                scaled_width = src.width() / (m_scale + 1);
             }
 
-            auto scaled_height = static_cast<unsigned>(src.height() * scale_factor);
-            auto scaled_width = static_cast<unsigned>(src.height() * scale_factor);
+            auto* scaled_image = new unsigned char[scaled_height * scaled_width * 4];
+            unsigned char* src_image = src.getPixels();
 
-            auto * scaled_image = new unsigned char [ scaled_height * scaled_width * 4 ];
-            unsigned char * src_image = src.getPixels();
+            for (unsigned y = 0; y < scaled_height; y++) {
+                for (unsigned x = 0; x < scaled_width; x++) {
+                    // Find the corresponding pixel in the source image
+                    unsigned src_x, src_y;
+                    if (m_scale < 0) {
+                        src_x = x / (-m_scale);
+                        src_y = y / (-m_scale);
+                    } else {
+                        src_x = x * (m_scale + 1);
+                        src_y = y * (m_scale + 1);
+                    }
 
-            for ( unsigned i = 0; i < scaled_height * scaled_width * 4; i += 4 ){
-                unsigned j = i/scale_factor;
-                scaled_image[ i ] =     src_image[ j ];
-                scaled_image[ i + 1 ] = scaled_image[ j + 1 ];
-                scaled_image[ i + 2 ] = scaled_image[ j + 2 ];
-                scaled_image[ i + 3 ] = scaled_image[ j + 3 ];
+                    if (src_x < src.width() && src_y < src.height()) {
+                        unsigned src_index = (src_y * src.width() + src_x) * 4;
+
+                        // Copy RGBA values from source to scaled image
+                        unsigned scaled_index = (y * scaled_width + x) * 4;
+                        scaled_image[scaled_index] = src_image[src_index];
+                        scaled_image[scaled_index + 1] = src_image[src_index + 1];
+                        scaled_image[scaled_index + 2] = src_image[src_index + 2];
+                        scaled_image[scaled_index + 3] = src_image[src_index + 3];
+                    }
+                }
             }
-            //delete the previous image; !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            src.loadScaledData( scaled_image, scaled_width, scaled_height );
+
+            // Delete the previous image
+
+
+            // Load the scaled image data
+            src.loadScaledData(scaled_image, scaled_width, scaled_height);
         }
     }
     cout << "Scale was set!" << endl;

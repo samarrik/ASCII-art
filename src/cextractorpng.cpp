@@ -66,7 +66,7 @@ void CExtractorPNG::read() {
     png_read_image(png_ptr, pixels_2d);
 
     //Allocate memory for the pixel data array
-    pixels = (png_byte*) malloc(width * height * 4);
+    pixels = new unsigned char [width * height * 4];
 
     cout << "1d size: " <<  width * height * 4 << endl;
     cout << "The width of the image read: " << width << endl;

@@ -6,7 +6,7 @@
 using namespace std;
 
 CImage::CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height )
-: m_pixels(pixels), m_ascii_data(), m_filename( filename ), m_filetype( filetype ), m_gradient(), m_width( width ), m_height( height)
+: m_pixels(pixels), m_ascii_data(), m_filename( filename ), m_filetype( filetype ), m_gradient(), m_width( width ), m_height( height), is_scaled ( false )
 {
     //A deep copy should be made here
     for ( auto source_filter : src){
@@ -60,6 +60,7 @@ void CImage::loadScaledData ( unsigned char * new_pixels, unsigned new_width, un
     m_pixels = new_pixels;
     m_width = new_width;
     m_height = new_height;
+    is_scaled = true;
 }
 
 void CImage::asciiConversion() {
@@ -84,10 +85,16 @@ void CImage::saveToFile( ofstream & outputFile ) const{
     int cnt_write = 0; //!
     cout << "ascii string size:" << m_ascii_data.size() << endl;
     for (unsigned i = 0, g = 0; i < m_height; i++, g++) {
-        for (unsigned j = 0; j < m_width - 1; j++, g++) {
+        for (unsigned j = 0; j < m_width; g++, j++) {
+            if ( j == m_width - 1 ){
+                j++; g--;
+                continue;
+            }
             outputFile << m_ascii_data[g];
             outputFile << m_ascii_data[g];
-            outputFile << m_ascii_data[g];
+            if ( ! is_scaled ) {
+                outputFile << m_ascii_data[g];
+            }
             cnt_write++;
         }
         outputFile << '\n';

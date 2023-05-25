@@ -10,9 +10,9 @@ image:
 filename photo.png
 filetype png
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
-brightness -5
+brightness -1
 negative 0
-scale 0
-contrast 3
+scale 2
+contrast 0
 convolution 0
 image_end;
