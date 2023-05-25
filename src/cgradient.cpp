@@ -16,7 +16,6 @@ void CGradient::apply( CImage & src ) {
     cout << "Gradient was set!" << endl;
 }
 
-CFilter & CGradient::set_val( const string & src ){
-    m_gradient = src;
-    return *this;
+CFilter * CGradient::clone( ){
+    return new CGradient(*this);
 }

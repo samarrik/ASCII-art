@@ -25,7 +25,6 @@ void CNegative::apply( CImage & src ){
     cout << "Negative was set!" << endl;
 }
 
-CFilter & CNegative::set_val(int src) {
-    m_negative = src;
-    return *this;
+CFilter * CNegative::clone( ){
+    return new CNegative (*this);
 }

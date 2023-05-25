@@ -59,7 +59,6 @@ void CContrast::apply( CImage & src ){
     cout << "Contrast was set!" << endl;
 }
 
-CFilter & CContrast::set_val( int src ){
-    m_contrast = src;
-    return *this;
+CFilter * CContrast::clone( ){
+    return new CContrast (*this);
 }

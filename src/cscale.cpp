@@ -26,7 +26,6 @@ void CScale::apply( CImage & src ){
     cout << "Scale was set!" << endl;
 }
 
-CFilter & CScale::set_val( int src ){
-    m_scale = src;
-    return *this;
+CFilter * CScale::clone( ){
+    return new CScale (*this);
 }

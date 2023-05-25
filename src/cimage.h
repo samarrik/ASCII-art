@@ -20,6 +20,12 @@ public:
      * @param src A CImage object on which the filter will be applied
      */
     virtual void apply ( CImage & src ) = 0;
+
+    /**
+     * Clones a data segment which is linked to the object
+     * @return CFilter * to a new allocated data segment
+     */
+    virtual CFilter * clone () = 0;
 };
 
 class CGradient : public CFilter {
@@ -28,7 +34,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( const string & src );
+    CFilter * clone () override;
 
 private:
     string m_gradient = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
@@ -40,7 +46,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( int src );
+    CFilter * clone () override;
 
 private:
     int m_brightness = 1;
@@ -52,7 +58,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( int src );
+    CFilter * clone () override;
 
 private:
     int m_contrast = 1;
@@ -65,7 +71,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( int src );
+    CFilter * clone () override;
 
 private:
     int m_negative = 0;
@@ -77,7 +83,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( int src );
+    CFilter * clone () override;
 
 private:
     int m_scale = 1;
@@ -89,7 +95,7 @@ public:
 
     void apply ( CImage & src ) override;
 
-    CFilter & set_val( int src );
+    CFilter * clone () override;
 
 private:
     int m_convolution = 0;
@@ -98,13 +104,16 @@ private:
 
 /**
  * An base class which represents an code
- * provided by a user to be proceed in an ASCII art
+ * provided by a user to be proceed in an ASCII-art
 */
 class CImage {
 
 public:
     //implicit constructor with default(programmed) parameters
-    CImage();
+    CImage() = default;
+
+    //Initializes an image using given filters, filename and filetype
+    CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height);
 
     //Adds a filter to a code
     void addFilter( CFilter * filter );

@@ -36,7 +36,6 @@ void CBrightness::apply( CImage & src ){
     cout << "Brightness was set!" << endl;
 }
 
-CFilter & CBrightness::set_val( int src ){
-    m_brightness = src;
-    return *this;
+CFilter * CBrightness::clone( ){
+    return new CBrightness (*this);
 }

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "cimage.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ public:
      * Adds a filter provided as parameter in the storage
      * @param filter
      */
-    void addFilter( CFilter * filter ) noexcept;
+    void addDefaultFilter( CFilter * filter ) noexcept;
 
     /**
      * Allows to extract a container with images
@@ -38,6 +39,19 @@ public:
      * @return A reference to the vector of filters
      */
     vector<CFilter*> & getFilters() noexcept;
+
+    /**
+     * Function to figure the number of images stored in
+     * the storage
+     * @return unsigned Number of images stored
+     */
+    unsigned imagesCount () const noexcept;
+
+    /**
+     * Function gets the last image of a collection
+     * @return CImage & to the last image of the collection
+     */
+    CImage & lastImage ();
 
 private:
     vector<CImage*> image_files;

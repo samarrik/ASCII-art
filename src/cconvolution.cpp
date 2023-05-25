@@ -16,7 +16,6 @@ void CConvolution::apply( CImage & src ){
     cout << "Convolution was set!" << endl;
 }
 
-CFilter & CConvolution::set_val(int src) {
-    m_convolution = src;
-    return *this;
+CFilter * CConvolution::clone( ){
+    return new CConvolution (*this);
 }

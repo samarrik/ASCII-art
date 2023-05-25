@@ -1,9 +1,16 @@
 #include "cimage.h"
-#include "iostream"
 
 using namespace std;
 
-CImage::CImage(){}
+CImage::CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height )
+: m_pixels(pixels), m_ascii_data(), m_filename( filename ), m_filetype( filetype ), m_gradient(), m_width( width ), m_height( height)
+{
+    //A deep copy should be made here
+    for ( auto source_filter : src){
+        m_filters.push_back(source_filter->clone());
+    }
+}
+
 
 void CImage::addFilter( CFilter * filter ) {
     m_filters.push_back(filter);
@@ -42,7 +49,6 @@ unsigned CImage::height () const {
 }
 
 void CImage::grayscale() {
-    cout << m_width * m_height * 4 << ": grayscaled sizes" << endl;
     for ( unsigned i = 0; i < m_width * m_height * 4; i += 4 ) {
         int grayscaled = int(0.2125 * m_pixels[i] + 0.7153 * m_pixels[i+1] + 0.0722 * m_pixels [i+2]);
         if ( m_pixels[i+3] == 0 ){

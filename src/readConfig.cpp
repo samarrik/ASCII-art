@@ -14,17 +14,7 @@
 
 using namespace std;
 
-/**
- * A function which reads settings for images
- * @param[in] configFile An input filestream which carries data read from the config.txt file
- * @param[in] images A storage where data from images should be stored
- * @returns 1   When data was read without any problems && global_end; / image_end; was read
- *          -1  When the end of file was read / other structure violations
- *          -2  When no filename/filetype was read
- *          -3  There is a problem with an code file
- *          //-3
- */
-bool readImageSettings(ifstream &configFile, SStorage & images )
+bool readImageSettings(ifstream &configFile, CStorage & images )
 {   
     //Strings to save parameter/filename/filetype
     string parameter;
@@ -46,17 +36,13 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
         configFile >> filetype;
     } else return false;
 
-    //Add default "code" to the storage
-    images.image_files.push_back(new CImage());
-    images.image_files.back()->loadFilters(images.default_filters);
-    images.image_files.back()->loadNameType(filename, filetype);
-
     if ( filetype == "jpeg"){
         //TODO
     } else if (filetype == "png") {
-        CExtractorPNG png_image = CExtractorPNG(filename);
+        CExtractorPNG png_image = CExtractorPNG( filename );
         png_image.read();
-        images.image_files.back()->loadExtractedData(png_image.get_width(),png_image.get_height(),png_image.get_pixels());
+        //Initialize an image using received data
+        images.addImage(new CImage( images.getFilters(), filename, filetype, png_image.get_pixels(), png_image.get_width(),png_image.get_height()));
     } else {
         return false; //wrong format
     }
@@ -103,13 +89,6 @@ bool readImageSettings(ifstream &configFile, SStorage & images )
     return false;
 }
 
-/**
- * Function reads "global" parameters set in config.txt
- * @param[in] configFile fstream of config.txt
- * @param[in] default_filters code which will be used as default (being changed during this fun.)
- * @param[out] bool value which tells us if the read was successful or not
-*/
-
 bool readGlobalSettings(ifstream & configFile, SStorage & images )
 {   
     //A string where parameter will be stored
@@ -121,39 +100,43 @@ bool readGlobalSettings(ifstream & configFile, SStorage & images )
     
     //Read configuration
     while ( true ){
+
         configFile >> parameter;
+
         //If the end of file was reached without the ending sequence (global_end;)
         if ( configFile.eof() ){
             break;
         }
 
+        //The block was ended properly
         if ( parameter == "global_end;"){
             return true;
         }
         else if ( parameter == "gradient"){
             configFile >> str_val;
-            images.default_filters.push_back(new CGradient(str_val));
+            images.addDefaultFilter(new CGradient(str_val));
         }
         else if ( parameter == "negative"){
             configFile >> int_val;
-            images.default_filters.push_back(new CNegative(int_val));
+            images.addDefaultFilter(new CNegative(int_val));
         }
         else if ( parameter == "scale"){
             configFile >> int_val;
-            images.default_filters.push_back(new CScale(int_val));
+            images.addDefaultFilter(new CScale(int_val));
         }
         else if ( parameter == "brightness"){
             configFile >> int_val;
-            images.default_filters.push_back(new CBrightness(int_val));
+            images.addDefaultFilter(new CBrightness(int_val));
         }
         else if ( parameter == "contrast"){
             configFile >> int_val;
-            images.default_filters.push_back(new CContrast(int_val));
+            images.addDefaultFilter(new CContrast(int_val));
         }
         else if ( parameter == "convolution"){
             configFile >> int_val;
-            images.default_filters.push_back(new CConvolution(int_val));
+            images.addDefaultFilter(new CConvolution(int_val));
         } else {
+            //Wrong parameter's header was passed
             break;
         }
     }
@@ -161,7 +144,7 @@ bool readGlobalSettings(ifstream & configFile, SStorage & images )
     return false;
 }
 
-void readConfig( SStorage &images )
+void readConfig( CStorage & images )
 {
     // Opens a config.txt file located in directory assets/ and checks if it is there and readable
     ifstream configFile(CONFIG_PATH, ios::in); // ios::in means that file will be opened in read-only mode
@@ -171,16 +154,18 @@ void readConfig( SStorage &images )
     }
 
     //Set up default filters for all images
-    images.default_filters.push_back(new CGradient());
-    images.default_filters.push_back(new CContrast());
-    images.default_filters.push_back(new CBrightness());
-    images.default_filters.push_back(new CNegative());
-    images.default_filters.push_back(new CScale());
-    images.default_filters.push_back(new CConvolution());
+    images.addDefaultFilter(new CGradient());
+    images.addDefaultFilter(new CContrast());
+    images.addDefaultFilter(new CBrightness());
+    images.addDefaultFilter(new CNegative());
+    images.addDefaultFilter(new CScale());
+    images.addDefaultFilter(new CConvolution());
 
     //String which will be used for reading the header  
     string header;
     while ( true ){
+
+        //Read header from the config file
         configFile >> header;
 
         //If the end of the file was reached, stop reading
@@ -199,13 +184,12 @@ void readConfig( SStorage &images )
             if ( ! readImageSettings( configFile, images ) ){
                 throw runtime_error("An error in config.txt while reading \"image\" unit");
             } else {
-                cout << "An Image was loaded!" << endl;
+                cout << "An image number " << images.imagesCount() << " was loaded!" << endl;
                 continue;
             }
 
         } else {
             throw runtime_error("The structure of config.txt was violated (wrong header)");
-        
         }
     }
 
