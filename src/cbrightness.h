@@ -14,7 +14,7 @@ public:
     CFilter * clone () override;
 
 private:
-    int m_brightness = 1;
+    int m_brightness = 0;
 };
 
 #endif //BRIGHTNESS

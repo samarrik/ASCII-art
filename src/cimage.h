@@ -78,6 +78,8 @@ public:
         return m_pixels;
     }
 
+    void loadScaledData ( unsigned char * new_pixels, unsigned new_width, unsigned new_height );
+
     void setGradient(   const string & src );
 
     string & getGradient();

@@ -56,6 +56,12 @@ string CImage::getFileName () const{
     return m_filename;
 }
 
+void CImage::loadScaledData ( unsigned char * new_pixels, unsigned new_width, unsigned new_height ){
+    m_pixels = new_pixels;
+    m_width = new_width;
+    m_height = new_height;
+}
+
 void CImage::asciiConversion() {
     cout << "real pixels" << m_width * m_height * 4 << endl;
     for ( unsigned i = 0; i < m_width * m_height * 4; i+= 4 ) {

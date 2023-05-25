@@ -1,7 +1,7 @@
 global:
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 negative 0
-scale 1
+scale 0
 contrast 0
 convolution 0
 global_end;
@@ -12,7 +12,7 @@ filetype png
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 brightness -5
 negative 0
-scale 1
+scale 0
 contrast 3
 convolution 0
 image_end;

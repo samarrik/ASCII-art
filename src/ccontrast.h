@@ -14,7 +14,7 @@ public:
     CFilter * clone () override;
 
 private:
-    int m_contrast = 1;
+    int m_contrast = 0;
 };
 
 #endif //CONTRAST

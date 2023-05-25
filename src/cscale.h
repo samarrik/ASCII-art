@@ -12,7 +12,7 @@ public:
     CFilter * clone () override;
 
 private:
-    int m_scale = 1;
+    int m_scale = 0;
 };
 
 #endif //SCALE
