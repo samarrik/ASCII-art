@@ -4,6 +4,11 @@
 #include <vector>
 #include "cimage.h"
 #include "cstorage.h"
+#include "cextractorpng.h"
+#include <fstream>
+#include <stdexcept>
+#include <string>
+#include <iostream>
 
 using namespace std;
 

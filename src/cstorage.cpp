@@ -6,8 +6,9 @@ void CStorage::addImage ( CImage * image ) noexcept {
     image_files.push_back(image);
 }
 
-void CStorage::addDefaultFilter( CFilter * filter ) noexcept {
+CStorage & CStorage::addDefaultFilter( CFilter * filter ) noexcept {
     default_filters.push_back(filter);
+    return *this;
 }
 
 vector<CImage*> & CStorage::getImages() noexcept {

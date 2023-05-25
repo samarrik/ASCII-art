@@ -1,10 +1,8 @@
 #include "convertToAscii.h"
-#include <fstream>
-#include <iostream>
 
 using namespace std;
 
-void convertToAscii (SStorage & images ) {
+void convertToAscii (CStorage & images ) {
     //Apply filters to all images we've saved
     for ( auto image : images.image_files ){
         image->applyFilters();

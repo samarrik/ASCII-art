@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     std::signal(SIGINT, handler);
 
     // Initialing storage
-    SStorage images;
+    CStorage images;
 
     try
     {

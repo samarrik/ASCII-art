@@ -25,8 +25,9 @@ public:
     /**
      * Adds a filter provided as parameter in the storage
      * @param filter
+     * @return CStorage & instance (for chaining)
      */
-    void addDefaultFilter( CFilter * filter ) noexcept;
+    CStorage & addDefaultFilter( CFilter * filter ) noexcept;
 
     /**
      * Allows to extract a container with images

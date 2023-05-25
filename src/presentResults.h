@@ -4,6 +4,7 @@
 #include <vector>
 #include "cimage.h"
 #include "cstorage.h"
+#include <iostream>
 
 using namespace std;
 
@@ -12,6 +13,6 @@ using namespace std;
  * @param[in] images A container of images to be presented
  * @exception runtime_error May throw a runtime error if files with converted images don't exist/ are broken
  */
-void presentResults( SStorage &images );
+void presentResults( CStorage &images );
 
 #endif //PRESENTRESULTS

@@ -4,6 +4,8 @@
 #include "cimage.h"
 #include <vector>
 #include "cstorage.h"
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
@@ -13,6 +15,6 @@ using namespace std;
  * @exception runtime_error May throw a runtime error if files which were provided to the program don't
  * exist/are broken
  */
-void convertToAscii ( SStorage & images );
+void convertToAscii ( CStorage & images );
 
 #endif //ASCIICONVERTER
