@@ -1,6 +1,4 @@
-#include "cimage.h"
-#include <iostream>
-#include <algorithm>
+#include "ccontrast.h"
 
 using namespace std;
 

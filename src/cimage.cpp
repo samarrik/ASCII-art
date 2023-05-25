@@ -1,5 +1,8 @@
 #include "cimage.h"
 
+#define MAX_PIXEL_VAL 255
+#define BLACK_THRESHOLD 5
+
 using namespace std;
 
 CImage::CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height )
@@ -11,7 +14,6 @@ CImage::CImage( vector<CFilter*> & src, string & filename, string & filetype, un
     }
 }
 
-
 void CImage::addFilter( CFilter * filter ) {
     m_filters.push_back(filter);
 }
@@ -19,21 +21,6 @@ void CImage::addFilter( CFilter * filter ) {
 void CImage::applyFilters() {
     for ( auto filter : m_filters )
         filter->apply(*this);
-}
-
-void CImage::loadFilters( vector<CFilter *> & src ) {
-    m_filters = src;
-}
-
-void CImage::loadNameType ( string & filename, string & filetype){
-    filename = filename;
-    filetype = filetype;
-}
-
-void CImage::loadExtractedData( unsigned w, unsigned h, unsigned char * p ){
-    m_width = w;
-    m_height = h;
-    m_pixels = p;
 }
 
 void CImage::setGradient( const string & src ) {
@@ -57,32 +44,49 @@ void CImage::grayscale() {
         m_pixels[i] = grayscaled;
         m_pixels[i+1] = grayscaled;
         m_pixels[i+2] = grayscaled;
-        //the last pixel is being skipped
+        //the last pixel is being skipped because it is "opacity"
     }
-}
-
-void CImage::loadConvertedToAscii ( string & src ){
-    m_ascii_data = src;
 }
 
 string & CImage::getGradient(){
     return m_gradient;
 }
 
-size_t CImage::lengthGradient(){
-    return m_gradient.size();
+string CImage::getFileName () const{
+    return m_filename;
 }
 
-string & CImage::getonvertedToAscii ( ){
-    return m_ascii_data;
+void CImage::asciiConversion() {
+    cout << "real pixels" << m_width * m_height * 4 << endl;
+    for ( unsigned i = 0; i < m_width * m_height * 4; i+= 4 ) {
+        /**
+         * Calculate which character to use;
+         */
+        int size = m_gradient.size();
+        int weight_per_char = MAX_PIXEL_VAL/size;
+
+        //If pixel bright enough, find an ASCII char for it, if not, just print " "
+        if ( m_pixels[i] > BLACK_THRESHOLD ) {
+            m_ascii_data.push_back(m_gradient[min(m_pixels[i] / weight_per_char, size - 1)]);
+        } else {
+            m_ascii_data.push_back(' ');
+        }
+    }
 }
 
-void CImage::convert() {
-    //TODO
-}
-
-void CImage::saveToFile() const{
-    //TODO
+void CImage::saveToFile( ofstream & outputFile ) const{
+    int cnt_write = 0; //!
+    cout << "ascii string size:" << m_ascii_data.size() << endl;
+    for (unsigned i = 0, g = 0; i < m_height; i++, g++) {
+        for (unsigned j = 0; j < m_width - 1; j++, g++) {
+            outputFile << m_ascii_data[g];
+            outputFile << m_ascii_data[g];
+            outputFile << m_ascii_data[g];
+            cnt_write++;
+        }
+        outputFile << '\n';
+    }
+    cout << "to_write:" << cnt_write << endl;
 }
 
 void CImage::print() const noexcept{

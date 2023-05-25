@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int main(int argc, char *argv[])
+int main()
 {
     //Setting up a handler for Ctrl+C
     std::signal(SIGINT, handler);

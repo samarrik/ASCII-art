@@ -3,12 +3,16 @@
 
 #include <string>
 #include <vector>
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
 class CImage;
-class CFilter;
 
+/**
+ * A base class for all filters
+ */
 class CFilter {
 public:
     CFilter() = default;
@@ -27,80 +31,6 @@ public:
      */
     virtual CFilter * clone () = 0;
 };
-
-class CGradient : public CFilter {
-public:
-    CGradient ( string src = "" );
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    string m_gradient = "`.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
-};
-
-class CBrightness : public CFilter {
-public:
-    CBrightness ( int src = -100 );
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    int m_brightness = 1;
-};
-
-class CContrast : public CFilter {
-public:
-    CContrast ( int src = -100 );
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    int m_contrast = 1;
-};
-
-class CNegative : public CFilter {
-public:
-    CNegative ( int src = -100 );
-
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    int m_negative = 0;
-};
-
-class CScale : public CFilter {
-public:
-    CScale ( int src = -100 );
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    int m_scale = 1;
-};
-
-class CConvolution : public CFilter {
-public:
-    CConvolution ( int src = -100 );
-
-    void apply ( CImage & src ) override;
-
-    CFilter * clone () override;
-
-private:
-    int m_convolution = 0;
-};
-
 
 /**
  * An base class which represents an code
@@ -125,34 +55,24 @@ public:
     void applyFilters();
 
     /**
-     * A method loads filters
-     * @param[in] filters A const reference to code for that code
-    */
-    void loadFilters( vector<CFilter *> & src );
-
-    /**
-     * A method grayscale the code
+     * A method grayscales the image
     */
     void grayscale();
 
     /**
-    * A method converts an code to ASCII
+    * A method converts a code to ASCII
     */
-    void convert();
+    void asciiConversion();
 
     /**
      * A method will save a ASCII art to the txt file
     */
-    void saveToFile() const;
+    void saveToFile( ofstream & outputFile )  const;
 
     /**
      * A method will print out an ASCII art
     */
     void print() const noexcept;
-
-    void loadExtractedData( unsigned w, unsigned h, unsigned char * p );
-
-    void loadNameType ( string & filename, string & filetype);
 
     unsigned char * getPixels (){
         return m_pixels;
@@ -166,19 +86,13 @@ public:
 
     unsigned height () const;
 
-    void loadConvertedToAscii ( string & src );
-
-    string & getonvertedToAscii ( );
-
-    size_t lengthGradient();
-
-
+    string getFileName () const;
 
 private:
         //A set of filters to be applied
         vector<CFilter*> m_filters;
         //raw pixels data
-        unsigned char * m_pixels;
+        unsigned char * m_pixels{};
         //ascii converted data
         string m_ascii_data;
         //name of the code file
@@ -186,8 +100,8 @@ private:
         //name of the file type
         string m_filetype;
         string m_gradient;
-        unsigned m_width;
-        unsigned m_height;
+        unsigned m_width{};
+        unsigned m_height{};
 };
 
 #endif //IMAGE

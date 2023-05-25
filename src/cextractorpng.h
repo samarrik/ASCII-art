@@ -4,6 +4,8 @@
 #include "png.h"
 #include "cextractor.h"
 #include <string>
+#include <iostream>
+#include <stdexcept>
 
 using namespace std;
 

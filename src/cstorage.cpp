@@ -24,9 +24,8 @@ unsigned CStorage::imagesCount () const noexcept {
 }
 
 CImage & CStorage::lastImage () {
-    if ( image_files.size() == 0 ){
+    if ( image_files.empty() ){
         throw logic_error("You are trying to get the first image of an empty collection");
-    } else {
-        image_files.back();
     }
+    return *(image_files.back());
 }

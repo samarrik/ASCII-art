@@ -1,5 +1,4 @@
-#include "cimage.h"
-#include <iostream>
+#include "cscale.h"
 
 using namespace std;
 

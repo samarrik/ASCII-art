@@ -1,5 +1,4 @@
-#include "cimage.h"
-#include <iostream>
+#include "cgradient.h"
 
 using namespace std;
 

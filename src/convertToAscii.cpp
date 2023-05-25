@@ -4,58 +4,35 @@ using namespace std;
 
 void convertToAscii (CStorage & images ) {
     //Apply filters to all images we've saved
-    for ( auto image : images.image_files ){
+    for ( auto image : images.getImages() ){
         image->applyFilters();
         image->grayscale();
     }
 
-
     //Convert pixel-data to text
-    for ( auto image : images.image_files ){
-        unsigned char * pixels = image->getPixels();
-        string ascii;
-        cout << "showGradient: " << image->getGradient() << endl;
-        cout << "lengthGradient: " << image->lengthGradient() << endl;
-        int cnt_store = 0; //!
-        for ( int i = 0; i < image->width()*image->height()*4; i+= 4 ) {
-            /**
-             * Calculate which character to use;
-             */
-             string gradient ( image->getGradient() );
-             int size = gradient.size();
-             int weight_per_char = 255/size;
-             if ( pixels[i] > 5 ) {
-                 ascii.push_back((image->getGradient())[min(pixels[i] / weight_per_char, size - 1)]);
-             } else {
-                 ascii.push_back(' ');
-             }
-            cnt_store++;
-        }
-        cout << "to_store:" << cnt_store << endl;
-        image->loadConvertedToAscii(ascii);
+    for ( auto image : images.getImages() ){
+        image->asciiConversion();
     }
 
     //3. delete previous data
+    //TODO:
 
-    //4. Load to the file !!TEST
-    ofstream outputFile;
-    outputFile.open("output.txt", ios::out);
-    CImage * image = images.image_files[0];
-    if (outputFile.is_open()) {
-        int cnt_write = 0; //!
-        cout << "ascii string size:" << image->getonvertedToAscii().size() << endl;
-        for ( unsigned i = 0, g = 0; i < image->height(); i++, g++ ){
-            for ( unsigned j = 0; j < image->width()-1; j++, g++){
-                outputFile << image->getonvertedToAscii()[g];
-                outputFile << image->getonvertedToAscii()[g];
-                outputFile << image->getonvertedToAscii()[g];
-            cnt_write ++;
-            }
-            outputFile << '\n';
+    //Load ascii arts in files
+    for ( auto image : images.getImages() ) {
+        ofstream outputFile;
+        string output_name;
+        for ( auto ch : image->getFileName()){
+            if ( ch != '.'){
+                output_name.push_back(ch);
+            } else break;
         }
-        cout << "to_write:" << cnt_write << endl;
-    } else {
-
+        output_name.append(".txt");
+        outputFile.open(output_name, ios::out);
+        if (outputFile.is_open()) {
+            image->saveToFile( outputFile );
+        } else {
+            throw runtime_error("The output file can't be created");
+        }
+        outputFile.close();
     }
-    outputFile.close();
 }

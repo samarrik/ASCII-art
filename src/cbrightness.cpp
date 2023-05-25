@@ -1,6 +1,4 @@
-#include "cimage.h"
-#include <stdexcept>
-#include <iostream>
+#include "cbrightness.h"
 
 using namespace std;
 

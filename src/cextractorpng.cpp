@@ -1,7 +1,4 @@
 #include "cextractorpng.h"
-#include <iostream>
-#include <exception>
-#include <cstring>
 
 using namespace std;
 
@@ -24,7 +21,7 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
     }
 
     //Structure which will hold all info of the PNG file
-    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     if ( png_ptr == nullptr ) {
         throw runtime_error("Can't create main png structure");
     }
@@ -33,7 +30,7 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
     info_ptr = png_create_info_struct(png_ptr);
     if ( info_ptr == nullptr ) {
         //Don't forget to destroy structure which was already created
-        png_destroy_read_struct(&png_ptr, NULL, NULL);
+        png_destroy_read_struct(&png_ptr, nullptr, nullptr);
         throw runtime_error("Can't create info struct");
     }
 
@@ -46,7 +43,7 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
 
 CExtractorPNG::~CExtractorPNG(){
     //Don't forget to destroy all structures we used for reading the file
-    png_destroy_read_struct(&png_ptr, NULL, NULL);
+    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
     png_destroy_info_struct( png_ptr, &info_ptr);
 }
 
@@ -72,8 +69,8 @@ void CExtractorPNG::read() {
     pixels = (png_byte*) malloc(width * height * 4);
 
     cout << "1d size: " <<  width * height * 4 << endl;
-    cout << "just read w: " << width << endl;
-    cout << "just read h: " << height << endl;
+    cout << "The width of the image read: " << width << endl;
+    cout << "The height of the image read: " << height << endl;
 
     //Copy the data from 2d array to 1d
     for (unsigned i = 0; i < height; i++) {
@@ -86,9 +83,4 @@ void CExtractorPNG::read() {
             dst[3] = pixel[3]; // Alpha
         }
     }
-//    for (int y = 0; y < height; y++) {
-//        memcpy(pixels + (y * width), pixels_2d[y], width);
-//    }
-
-
 }

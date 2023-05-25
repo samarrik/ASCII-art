@@ -1,5 +1,4 @@
-#include "cimage.h"
-#include <iostream>
+#include "cconvolution.h"
 
 using namespace std;
 
@@ -8,7 +7,6 @@ CConvolution::CConvolution ( int src )
     if ( src != -1)
         m_convolution = src;
 }
-
 
 void CConvolution::apply( CImage & src ){
     cout << "Convolution" << endl;

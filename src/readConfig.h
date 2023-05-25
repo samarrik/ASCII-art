@@ -9,6 +9,13 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
+#include "cbrightness.h"
+#include "ccontrast.h"
+#include "cgradient.h"
+#include "cconvolution.h"
+#include "cscale.h"
+#include "cnegative.h"
+
 
 using namespace std;
 
