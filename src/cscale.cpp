@@ -28,8 +28,8 @@ void CScale::apply( CImage & src ){
                 scaled_width = src.width() * (m_scale + 1);
             }
 
-            auto* scaled_image = new unsigned char[scaled_height * scaled_width * 4];
-            unsigned char* src_image = src.getPixels();
+            auto * scaled_image = new unsigned char[scaled_height * scaled_width * 4];
+            unsigned char * src_image = src.getPixels();
 
             for (unsigned y = 0; y < scaled_height; y++) {
                 for (unsigned x = 0; x < scaled_width; x++) {
@@ -57,7 +57,7 @@ void CScale::apply( CImage & src ){
             }
 
             // Delete the previous image
-
+            delete [] src_image;
 
             // Load the scaled image data
             src.loadScaledData(scaled_image, scaled_width, scaled_height);

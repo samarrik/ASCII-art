@@ -29,11 +29,21 @@ $(OBJDIR):
 run: compile
 	$(OBJDIR)/$(OUT)
 
+.PHONY: san
+san: $(OBJS)
+	$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OBJDIR)/$(OUT) $^ $(LIBS)
+	$(OBJDIR)/$(OUT)
+
+.PHONY: val
+val: compile
+	valgrind ./$(OBJDIR)/$(OUT) --leak-check=full
+
 .PHONY: clean
 clean:
 	rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	rm -fd $(OBJDIR)
-	rm -r -i $(DOCDIR)/*
+	rm -fr $(DOCDIR)
+	mkdir $(DOCDIR)
 
 .PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)

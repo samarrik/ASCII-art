@@ -14,7 +14,7 @@ bool readImageSettings(ifstream &configFile, CStorage & images )
     //Variables for storing values of parameters
     string str_val;
     int int_val;
-    
+
     //First of all filename and filetype should be read
     configFile >> parameter;
     if ( parameter == "filename" ){
@@ -29,8 +29,8 @@ bool readImageSettings(ifstream &configFile, CStorage & images )
     if ( filetype == "jpeg"){
         //TODO:
     } else if (filetype == "png") {
-        CExtractorPNG png_image = CExtractorPNG( filename );
-        png_image.read();
+        CExtractorPNG png_image ( filename );
+//        png_image.read();
         //Initialize an image using received data
         images.addImage(new CImage( images.getFilters(), filename, filetype, png_image.get_pixels(), png_image.get_width(),png_image.get_height()));
     } else {
@@ -92,12 +92,11 @@ bool readGlobalSettings(ifstream & configFile, CStorage & images )
     //Variables for storing values of parameters
     string str_val;
     int int_val;
-    
+
     //Read configuration
     while ( true ){
 
         configFile >> parameter;
-
         //If the end of file was reached without the ending sequence (global_end;)
         if ( configFile.eof() ){
             break;
@@ -135,7 +134,6 @@ bool readGlobalSettings(ifstream & configFile, CStorage & images )
             break;
         }
     }
-
     return false;
 }
 

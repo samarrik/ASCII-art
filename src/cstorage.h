@@ -16,6 +16,8 @@ class CStorage {
 public:
     CStorage() = default;
 
+    ~CStorage();
+
     /**
      * Adds an image provided as parameter in the storage
      * @param image

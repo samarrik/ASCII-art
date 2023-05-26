@@ -7,6 +7,8 @@ class CScale : public CFilter {
 public:
     CScale ( int src = -100 );
 
+    ~CScale() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

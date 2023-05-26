@@ -2,6 +2,15 @@
 
 using namespace std;
 
+CStorage::~CStorage() {
+    for ( auto filter : default_filters ){
+        delete filter;
+    }
+    for ( auto image : image_files ){
+        delete image;
+    }
+}
+
 void CStorage::addImage ( CImage * image ) noexcept {
     image_files.push_back(image);
 }

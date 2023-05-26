@@ -9,6 +9,8 @@ class CBrightness : public CFilter {
 public:
     CBrightness ( int src = -100 );
 
+    ~CBrightness() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

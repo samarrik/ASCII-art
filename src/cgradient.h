@@ -7,6 +7,8 @@ class CGradient : public CFilter {
 public:
     CGradient ( string src = "" );
 
+    ~CGradient() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

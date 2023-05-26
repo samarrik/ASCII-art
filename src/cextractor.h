@@ -17,9 +17,9 @@ class CExtractor {
         //A virtual destructor which ensures deletion of the instance of the right child class
         virtual ~CExtractor() = default;
 
-        /**
-         * A virtual method reads code data from the file
-        */
-        virtual void read() = 0;
+//        /**
+//         * A virtual method reads code data from the file
+//        */
+//        virtual void read() = 0;
 };
 #endif //EXTRACTOR

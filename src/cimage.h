@@ -45,6 +45,8 @@ public:
     //Initializes an image using given filters, filename and filetype
     CImage( vector<CFilter*> & src, string & filename, string & filetype, unsigned char * pixels, unsigned width, unsigned height );
 
+    ~CImage();
+
     //Adds a filter to a code
     void addFilter( CFilter * filter );
 
@@ -94,7 +96,7 @@ private:
         //A set of filters to be applied
         vector<CFilter*> m_filters;
         //raw pixels data
-        unsigned char * m_pixels{};
+        unsigned char * m_pixels;
         //ascii converted data
         string m_ascii_data;
         //name of the code file

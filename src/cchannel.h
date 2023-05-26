@@ -7,6 +7,8 @@ class CChannel : public CFilter {
 public:
     CChannel ( string src = "" );
 
+    ~CChannel() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

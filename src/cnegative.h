@@ -8,6 +8,8 @@ class CNegative : public CFilter {
 public:
     CNegative ( int src = -100 );
 
+    ~CNegative() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

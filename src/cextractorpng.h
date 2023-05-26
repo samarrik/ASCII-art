@@ -15,7 +15,7 @@ class CExtractorPNG : public CExtractor {
         CExtractorPNG( const string & filename );
 
         //Delete an instance of the parser
-        ~CExtractorPNG();
+        ~CExtractorPNG() = default;
 
         unsigned get_width() const {
             return width;
@@ -30,7 +30,7 @@ class CExtractorPNG : public CExtractor {
         }
 
         //Read data from the code
-        void read() override;
+//        void read() override;
     
     private:
         string filename;
@@ -44,6 +44,7 @@ class CExtractorPNG : public CExtractor {
         int interlace_method;
         int compression_method;
         int filter_method;
+        FILE * fp;
 };
 
 #endif //EXTRACTORPNG

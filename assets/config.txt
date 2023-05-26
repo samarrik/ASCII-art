@@ -17,14 +17,4 @@ contrast 5
 channel r
 image_end;
 
-image:
-filename photo1.png
-filetype png
-gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
-brightness 0
-negative 0
-scale -10
-contrast 5
-channel n
-image_end;
 

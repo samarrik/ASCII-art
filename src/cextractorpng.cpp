@@ -5,7 +5,7 @@ using namespace std;
 CExtractorPNG::CExtractorPNG( const string & filename ){
 
     //Open the file for reading
-    FILE *fp = fopen(filename.c_str(), "rb");
+    fp = fopen(filename.c_str(), "rb");
     if ( fp == nullptr ) {
         throw runtime_error( "Image file can't be opened.\nCheck if the name of the file is valid." );
     }
@@ -39,15 +39,7 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
 
     //Send an info that some bytes were already read (header check)
     png_set_sig_bytes(png_ptr, 8);
-}
 
-CExtractorPNG::~CExtractorPNG(){
-    //Don't forget to destroy all structures we used for reading the file
-    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
-    png_destroy_info_struct( png_ptr, &info_ptr);
-}
-
-void CExtractorPNG::read() {
     //Read info of the code (up to actual code data)
     png_read_info(png_ptr, info_ptr);
 
@@ -55,22 +47,16 @@ void CExtractorPNG::read() {
     png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_method, &compression_method, &filter_method);
 
     // Allocate memory for two-dimensional array of pixels
-    png_bytep * pixels_2d = (png_bytep*) malloc(sizeof(png_bytep) * height);
+    unsigned char ** pixels_2d = new unsigned char * [height];
     for (png_uint_32 y = 0; y < height; y++) {
-        pixels_2d[y] = (png_byte*) malloc(png_get_rowbytes(png_ptr, info_ptr));
+        pixels_2d[y] = new unsigned char [png_get_rowbytes(png_ptr, info_ptr)];
     }
-
-    cout << "2d size: " <<  height * png_get_rowbytes(png_ptr, info_ptr) << endl;
 
     //Read pixels
     png_read_image(png_ptr, pixels_2d);
 
     //Allocate memory for the pixel data array
     pixels = new unsigned char [width * height * 4];
-
-    cout << "1d size: " <<  width * height * 4 << endl;
-    cout << "The width of the image read: " << width << endl;
-    cout << "The height of the image read: " << height << endl;
 
     //Copy the data from 2d array to 1d
     for (unsigned i = 0; i < height; i++) {
@@ -83,4 +69,14 @@ void CExtractorPNG::read() {
             dst[3] = pixel[3]; // Alpha
         }
     }
+
+    for (png_uint_32 y = 0; y < height; y++) {
+        delete [] pixels_2d[y];
+    }
+    delete [] pixels_2d;
+
+    //Don't forget to destroy all structures we used for reading the file
+    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
+    png_destroy_info_struct( png_ptr, &info_ptr);
+    fclose(fp);
 }

@@ -9,6 +9,8 @@ class CContrast : public CFilter {
 public:
     CContrast ( int src = -100 );
 
+    ~CContrast() = default;
+
     void apply ( CImage & src ) override;
 
     CFilter * clone () override;

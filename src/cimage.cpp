@@ -14,6 +14,13 @@ CImage::CImage( vector<CFilter*> & src, string & filename, string & filetype, un
     }
 }
 
+CImage::~CImage() {
+    delete [] m_pixels;
+    for ( auto filter : m_filters){
+        delete filter;
+    }
+}
+
 void CImage::addFilter( CFilter * filter ) {
     m_filters.push_back(filter);
 }
