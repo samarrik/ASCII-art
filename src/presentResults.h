@@ -4,6 +4,7 @@
 #include <vector>
 #include "cimage.h"
 #include "cstorage.h"
+#include <cmath>
 #include <iostream>
 
 using namespace std;

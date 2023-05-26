@@ -71,9 +71,10 @@ bool readImageSettings(ifstream &configFile, CStorage & images )
             configFile >> int_val;
             images.lastImage().addFilter(new CContrast(int_val));
         }
-        else if ( parameter == "convolution"){
-            configFile >> int_val;
-            images.lastImage().addFilter(new CConvolution(int_val));
+        else if ( parameter == "channel"){
+
+            configFile >> str_val;
+            images.lastImage().addFilter(new CChannel(str_val));
         } else {
             //Wrong parameter's header was passed
             break;
@@ -126,9 +127,9 @@ bool readGlobalSettings(ifstream & configFile, CStorage & images )
             configFile >> int_val;
             images.addDefaultFilter(new CContrast(int_val));
         }
-        else if ( parameter == "convolution"){
-            configFile >> int_val;
-            images.addDefaultFilter(new CConvolution(int_val));
+        else if ( parameter == "channel"){
+            configFile >> str_val;
+            images.addDefaultFilter(new CChannel(str_val));
         } else {
             //Wrong parameter's header was passed
             break;
@@ -153,7 +154,7 @@ void readConfig( CStorage & images )
           .addDefaultFilter(new CBrightness())
           .addDefaultFilter(new CNegative())
           .addDefaultFilter(new CScale())
-          .addDefaultFilter(new CConvolution());
+          .addDefaultFilter(new CChannel());
 
     //String which will be used for reading the header  
     string header;

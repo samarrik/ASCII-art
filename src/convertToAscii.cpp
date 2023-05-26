@@ -8,11 +8,13 @@ void convertToAscii (CStorage & images ) {
         image->applyFilters();
         image->grayscale();
     }
+    cout << "\033[1;33mProcess: \033[0m" << "\033[1;32m[===      ]\033[0m" << endl;
 
     //Convert pixel-data to text
     for ( auto image : images.getImages() ){
         image->asciiConversion();
     }
+    cout << "\033[1;33mProcess: \033[0m" << "\033[1;32m[======   ]\033[0m" << endl;
 
     //3. delete previous data
     //TODO:
@@ -35,4 +37,6 @@ void convertToAscii (CStorage & images ) {
         }
         outputFile.close();
     }
+    cout << "\033[1;33mProcess: \033[0m" << "\033[1;32m[=========]\033[0m" << endl;
+    cout << "\033[1;33mDONE!\033[0m" << endl;
 }

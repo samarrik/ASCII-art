@@ -12,7 +12,7 @@
 #include "cbrightness.h"
 #include "ccontrast.h"
 #include "cgradient.h"
-#include "cconvolution.h"
+#include "cchannel.h"
 #include "cscale.h"
 #include "cnegative.h"
 

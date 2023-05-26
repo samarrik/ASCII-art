@@ -103,5 +103,18 @@ void CImage::saveToFile( ofstream & outputFile ) const{
 }
 
 void CImage::print() const noexcept{
-    //TODO
+    for (unsigned i = 0, g = 0; i < m_height; i++, g++) {
+        for (unsigned j = 0; j < m_width; g++, j++) {
+            if ( j == m_width - 1 ){
+                j++; g--;
+                continue;
+            }
+            cout << m_ascii_data[g];
+            cout << m_ascii_data[g];
+//            if ( ! is_scaled ) {
+                cout << m_ascii_data[g];
+//            }
+        }
+        cout << '\n';
+    }
 }

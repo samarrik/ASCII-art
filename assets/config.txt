@@ -3,16 +3,28 @@ gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 negative 0
 scale 0
 contrast 0
-convolution 0
+channel n
 global_end;
 
 image:
 filename photo.png
 filetype png
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
-brightness -1
+brightness 0
 negative 0
-scale 2
-contrast 0
-convolution 0
+scale -10
+contrast 5
+channel r
 image_end;
+
+image:
+filename photo1.png
+filetype png
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness 0
+negative 0
+scale -10
+contrast 5
+channel n
+image_end;
+
