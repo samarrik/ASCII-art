@@ -12,9 +12,9 @@ filetype png
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 brightness 0
 negative 0
-scale -10
+scale -5
 contrast 5
-channel r
+channel n
 image_end;
 
 

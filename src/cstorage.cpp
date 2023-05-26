@@ -3,38 +3,46 @@
 using namespace std;
 
 CStorage::~CStorage() {
-    for ( auto filter : default_filters ){
+    for ( auto filter : m_default_filters ){
         delete filter;
     }
-    for ( auto image : image_files ){
+    for ( auto image : m_image_files ){
         delete image;
     }
 }
 
 void CStorage::addImage ( CImage * image ) noexcept {
-    image_files.push_back(image);
+    m_image_files.push_back(image);
 }
 
 CStorage & CStorage::addDefaultFilter( CFilter * filter ) noexcept {
-    default_filters.push_back(filter);
+    m_default_filters.push_back(filter);
     return *this;
 }
 
 vector<CImage*> & CStorage::getImages() noexcept {
-    return image_files;
+    return m_image_files;
 }
 
 vector<CFilter*> & CStorage::getFilters() noexcept {
-    return default_filters;
+    return m_default_filters;
 }
 
 unsigned CStorage::imagesCount () const noexcept {
-    return image_files.size();
+    return m_image_files.size();
 }
 
 CImage & CStorage::lastImage () {
-    if ( image_files.empty() ){
+    if ( m_image_files.empty() ){
         throw logic_error("You are trying to get the first image of an empty collection");
     }
-    return *(image_files.back());
+    return *(m_image_files.back());
+}
+
+void CStorage::saveConfig ( const string & src ) noexcept {
+    m_config_file_name = src;
+}
+
+string CStorage::pathConfig() const noexcept {
+    return m_config_file_name;
 }

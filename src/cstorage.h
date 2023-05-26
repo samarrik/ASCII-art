@@ -56,9 +56,22 @@ public:
      */
     CImage & lastImage ();
 
+    /**
+     * The function saves the name of/path to  the config file provided to the application
+     * @param src A string containing the name of the config file
+     */
+    void saveConfig ( const string & src ) noexcept;
+
+    /**
+     * The function returns the path to the config file
+     * @return string A path to the config file
+     */
+    string pathConfig() const noexcept;
+
 private:
-    vector<CImage*> image_files;
-    vector<CFilter*> default_filters;
+    vector<CImage*> m_image_files;
+    vector<CFilter*> m_default_filters;
+    string m_config_file_name;
 };
 
 #endif //STORAGE

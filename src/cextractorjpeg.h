@@ -1,7 +1,7 @@
 #ifndef EXTRACTORJPEG
 #define EXTRACTORJPEG
 
-#include "jpeglib.h"
+//#include "jpeglib.h"
 #include "cextractor.h"
 
 using namespace std;
@@ -12,7 +12,7 @@ class CExtractorJPEG : public CExtractor {
 
     ~CExtractorJPEG();
 
-    void read() override;
+    void read( const string & filename ) override;
 };
 
 #endif //EXTRACTORJPEG

@@ -6,10 +6,8 @@
 #include <string>
 
 /**
- * This function handles Ctrl+C signal, asks user if he/she wants to end the program and
- * based on the user's answer continues executing the program or ends it
+ * This function handles Ctrl+C signal
  * @param signal
  */
-void handler(int signal);
-
+void handler( int signal );
 #endif //HANDLER

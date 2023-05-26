@@ -1,7 +1,5 @@
 #include "readConfig.h"
 
-#define CONFIG_PATH "assets/config.txt"
-
 using namespace std;
 
 bool readImageSettings(ifstream &configFile, CStorage & images )
@@ -19,22 +17,23 @@ bool readImageSettings(ifstream &configFile, CStorage & images )
     configFile >> parameter;
     if ( parameter == "filename" ){
         configFile >> filename;
-    } else return false;
-
+    } else throw logic_error ( "An image block doesn't have filename option as the first one ");
     configFile >> parameter;
     if ( parameter == "filetype" ){
         configFile >> filetype;
-    } else return false;
+    } else throw logic_error ( "An image block doesn't have filename option as the second one");
 
+    //Read the image
     if ( filetype == "jpeg"){
         //TODO:
     } else if (filetype == "png") {
-        CExtractorPNG png_image ( filename );
-//        png_image.read();
+        CExtractorPNG png_image;
+        png_image.read( filename );
         //Initialize an image using received data
         images.addImage(new CImage( images.getFilters(), filename, filetype, png_image.get_pixels(), png_image.get_width(),png_image.get_height()));
     } else {
-        return false; //wrong format
+        //Wrong format
+        throw logic_error ( string("An image ").append(filename).append(" has a format which isn't convertable by this converter"));
     }
 
     //Read "image" block
@@ -140,7 +139,7 @@ bool readGlobalSettings(ifstream & configFile, CStorage & images )
 void readConfig( CStorage & images )
 {
     // Opens a config.txt file located in directory assets/ and checks if it is there and readable
-    ifstream configFile(CONFIG_PATH, ios::in); // ios::in means that file will be opened in read-only mode
+    ifstream configFile(images.pathConfig(), ios::in); // ios::in means that file will be opened in read-only mode
     if (!configFile.is_open())
     {
         throw runtime_error("An invalid config.txt was passed to converter or it doesn't exist. (check assets/ folder)");

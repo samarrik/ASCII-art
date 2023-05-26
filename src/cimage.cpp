@@ -55,8 +55,8 @@ void CImage::grayscale() {
     }
 }
 
-string & CImage::getGradient(){
-    return m_gradient;
+void CImage::reverseGradient(){
+    reverse(m_gradient.begin(), m_gradient.end());
 }
 
 string CImage::getFileName () const{

@@ -11,40 +11,38 @@ using namespace std;
 
 class CExtractorPNG : public CExtractor {
     public:
-        //Create an instance of the parser, prepare it for reading
-        CExtractorPNG( const string & filename );
+        CExtractorPNG() = default;
 
-        //Delete an instance of the parser
         ~CExtractorPNG() = default;
 
-        unsigned get_width() const {
-            return width;
-        }
+        /**
+         * Function gets the width of an image which was extracted
+         * @return unsigned Image width
+         */
+        unsigned get_width() const ;
 
-        unsigned get_height() const {
-            return height;
-        }
+        /**
+        * Function gets the height of an image which was extracted
+        * @return unsigned Image height
+        */
+        unsigned get_height() const ;
 
-        unsigned char * get_pixels (){
-            return pixels;
-        }
+        /**
+        * Function gets pixels of an image which was extracted
+        * @return unsigned Image pixels
+        */
+        unsigned char * get_pixels ();
 
-        //Read data from the code
-//        void read() override;
+        /**
+        * Function reads data from the image
+        */
+        void read( const string & filename ) override;
     
     private:
-        string filename;
-        unsigned char * pixels;
-        png_structp png_ptr;
-        png_infop info_ptr;
-        unsigned width;
-        unsigned height;
-        int bit_depth;
-        int color_type;
-        int interlace_method;
-        int compression_method;
-        int filter_method;
-        FILE * fp;
+        string m_filename;
+        unsigned char * m_pixels;
+        unsigned m_width;
+        unsigned m_height;
 };
 
 #endif //EXTRACTORPNG

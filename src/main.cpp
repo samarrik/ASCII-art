@@ -8,13 +8,24 @@
 
 using namespace std;
 
-int main()
+int main( int argc, char* argv[] )
 {
+    // Initialing storage
+    static CStorage images;
+
     //Setting up a handler for Ctrl+C
     std::signal(SIGINT, handler);
 
-    // Initialing storage
-    CStorage images;
+    if ( argc < 2 ) {
+        cerr << "\033[1;31mThe config file wasn't provided to the converter\033[0m" << endl;
+        return EXIT_FAILURE;
+    } else if ( argc > 2 ){
+        cerr << "\033[1;31mToo many arguments were provided to the converter\033[0m" << endl;
+        return EXIT_FAILURE;
+    } else {
+        //Save the name of the config file
+        images.saveConfig( argv[1] );
+    }
 
     try
     {

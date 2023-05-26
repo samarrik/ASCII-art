@@ -2,12 +2,11 @@
 
 using namespace std;
 
-CExtractorPNG::CExtractorPNG( const string & filename ){
-
+void CExtractorPNG::read( const string & filename ) {
     //Open the file for reading
-    fp = fopen(filename.c_str(), "rb");
+    FILE * fp = fopen(filename.c_str(), "rb");
     if ( fp == nullptr ) {
-        throw runtime_error( "Image file can't be opened.\nCheck if the name of the file is valid." );
+        throw runtime_error( "Image file can't be opened. Check if the name of the file is valid." );
     }
 
     /**
@@ -21,13 +20,13 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
     }
 
     //Structure which will hold all info of the PNG file
-    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
     if ( png_ptr == nullptr ) {
         throw runtime_error("Can't create main png structure");
     }
 
     //Structure which will hold all additional info of the PNG file
-    info_ptr = png_create_info_struct(png_ptr);
+    png_infop info_ptr = png_create_info_struct(png_ptr);
     if ( info_ptr == nullptr ) {
         //Don't forget to destroy structure which was already created
         png_destroy_read_struct(&png_ptr, nullptr, nullptr);
@@ -44,39 +43,59 @@ CExtractorPNG::CExtractorPNG( const string & filename ){
     png_read_info(png_ptr, info_ptr);
 
     //Get information from info_ptr
-    png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_method, &compression_method, &filter_method);
+    png_get_IHDR(png_ptr, info_ptr, &m_width
+                 , &m_height, nullptr, nullptr, nullptr, nullptr, nullptr);
 
-    // Allocate memory for two-dimensional array of pixels
-    unsigned char ** pixels_2d = new unsigned char * [height];
-    for (png_uint_32 y = 0; y < height; y++) {
-        pixels_2d[y] = new unsigned char [png_get_rowbytes(png_ptr, info_ptr)];
+    // Allocate memory for two-dimensional array of m_pixels
+    unsigned char ** pixels_2d = new unsigned char * [m_height];
+    for (unsigned i = 0; i < m_height; i++) {
+        pixels_2d[i] = new unsigned char [png_get_rowbytes(png_ptr, info_ptr)];
     }
 
-    //Read pixels
+    //Read m_pixels
     png_read_image(png_ptr, pixels_2d);
 
+    //Destroy the structure for reading info
+    png_destroy_info_struct( png_ptr, &info_ptr);
+
+    //Destroy the structure for reading image data
+    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
+
+    //Close the file, we don't need it anymore
+    fclose(fp);
+
     //Allocate memory for the pixel data array
-    pixels = new unsigned char [width * height * 4];
+    m_pixels = new unsigned char [m_width * m_height * 4];
 
     //Copy the data from 2d array to 1d
-    for (unsigned i = 0; i < height; i++) {
-        for (unsigned j = 0; j < width; j++) {
-            unsigned char * pixel = &(pixels_2d[i][j * 4]);
-            unsigned char * dst = &(pixels[(i * width + j) * 4]);
-            dst[0] = pixel[0]; // Red
-            dst[1] = pixel[1]; // Green
-            dst[2] = pixel[2]; // Blue
-            dst[3] = pixel[3]; // Alpha
+    for (unsigned i = 0; i < m_height; i++) {
+        for (unsigned j = 0; j < m_width; j++) {
+            unsigned char *pixel = &(pixels_2d[i][j * 4]);
+            unsigned char *to = &(m_pixels[(i * m_width + j) * 4]);
+            //copy all RGBA values
+            to[0] = pixel[0];
+            to[1] = pixel[1];
+            to[2] = pixel[2];
+            to[3] = pixel[3];
         }
     }
 
-    for (png_uint_32 y = 0; y < height; y++) {
+    //Delete the previous 2d structure
+    for (png_uint_32 y = 0; y < m_height; y++) {
         delete [] pixels_2d[y];
     }
     delete [] pixels_2d;
+}
 
-    //Don't forget to destroy all structures we used for reading the file
-    png_destroy_read_struct(&png_ptr, nullptr, nullptr);
-    png_destroy_info_struct( png_ptr, &info_ptr);
-    fclose(fp);
+unsigned CExtractorPNG::get_width
+() const {
+    return m_width;
+}
+
+unsigned CExtractorPNG::get_height() const {
+    return m_height;
+}
+
+unsigned char * CExtractorPNG::get_pixels (){
+    return m_pixels;
 }
