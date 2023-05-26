@@ -168,7 +168,6 @@ void readConfig( CStorage & images )
             if ( ! readGlobalSettings(configFile, images ) )
                 throw runtime_error("An error in config.txt while reading \"global\" unit");
             else {
-                cout << "Global settings were set!" << endl;
                 continue;
             }
 
@@ -176,7 +175,6 @@ void readConfig( CStorage & images )
             if ( ! readImageSettings( configFile, images ) ){
                 throw runtime_error("An error in config.txt while reading \"image\" unit");
             } else {
-                cout << "An image number " << images.imagesCount() << " was loaded!" << endl;
                 continue;
             }
 

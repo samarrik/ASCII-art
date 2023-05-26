@@ -44,6 +44,7 @@ unsigned CImage::height () const {
 
 void CImage::grayscale() {
     for ( unsigned i = 0; i < m_width * m_height * 4; i += 4 ) {
+        //Takes the grayscale out of the image
         int grayscaled = int(0.2125 * m_pixels[i] + 0.7153 * m_pixels[i+1] + 0.0722 * m_pixels [i+2]);
         if ( m_pixels[i+3] == 0 ){
             grayscaled = 0;
@@ -71,7 +72,6 @@ void CImage::loadScaledData ( unsigned char * new_pixels, unsigned new_width, un
 }
 
 void CImage::asciiConversion() {
-    cout << "real pixels" << m_width * m_height * 4 << endl;
     for ( unsigned i = 0; i < m_width * m_height * 4; i+= 4 ) {
         /**
          * Calculate which character to use;
@@ -89,8 +89,6 @@ void CImage::asciiConversion() {
 }
 
 void CImage::saveToFile( ofstream & outputFile ) const{
-    int cnt_write = 0; //!
-    cout << "ascii string size:" << m_ascii_data.size() << endl;
     for (unsigned i = 0, g = 0; i < m_height; i++, g++) {
         for (unsigned j = 0; j < m_width; g++, j++) {
             if ( j == m_width - 1 ){
@@ -102,11 +100,9 @@ void CImage::saveToFile( ofstream & outputFile ) const{
             if ( ! is_scaled ) {
                 outputFile << m_ascii_data[g];
             }
-            cnt_write++;
         }
         outputFile << '\n';
     }
-    cout << "to_write:" << cnt_write << endl;
 }
 
 void CImage::print() const noexcept{
@@ -116,11 +112,10 @@ void CImage::print() const noexcept{
                 j++; g--;
                 continue;
             }
+            //Print it 3 times to make it wider
             cout << m_ascii_data[g];
             cout << m_ascii_data[g];
-//            if ( ! is_scaled ) {
-                cout << m_ascii_data[g];
-//            }
+            cout << m_ascii_data[g];
         }
         cout << '\n';
     }

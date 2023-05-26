@@ -27,7 +27,7 @@ $(OBJDIR):
 
 .PHONY: run
 run: compile
-	$(OBJDIR)/$(OUT)
+	$(OBJDIR)/$(OUT) assets/config.txt
 
 #sanitizer
 .PHONY: san

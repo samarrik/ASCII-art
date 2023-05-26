@@ -26,7 +26,7 @@ void CContrast::apply( CImage & src ){
             //Iterate through all pixels to find global min/max
             int global_max = 0;
             int global_min = 255;
-            for (int i = 0; i < src.width() * src.height() * 4; i += 4) {
+            for (unsigned i = 0; i < src.width() * src.height() * 4; i += 4) {
                 //Finding the local extremes ( the value that represents how bright the pixel is )
                 int local_max = int(0.2125 * pixels[i] + 0.7153 * pixels[i+1] + 0.0722 * pixels [i+2]);
                 int local_min = int(0.2125 * pixels[i] + 0.7153 * pixels[i+1] + 0.0722 * pixels [i+2]);
@@ -52,7 +52,7 @@ void CContrast::apply( CImage & src ){
             }
 
             //Update the contrast on each picture
-            for (int i = 0; i < src.width() * src.height() * 4; i += 4) {
+            for (unsigned i = 0; i < src.width() * src.height() * 4; i += 4) {
                 //If the pixel is brighter than a middle point (global_difference), make it brighter, if lower - darker
                 if ( (pixels[i] + pixels[i+1] + pixels[i+2]) / 3 >= global_difference  ) {
                     pixels[i] = min(int(pixels[i] * contrast_coefficient), 255);
