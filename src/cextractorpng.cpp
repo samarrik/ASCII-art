@@ -16,7 +16,7 @@ void CExtractorPNG::read( const string & filename ) {
     */
     png_byte header[8];
     if ( fread(header, 1, 8, fp) < 8 ){
-        throw runtime_error( "PNG Image file can't be verified, doublecheck if the file is valid." );
+        throw runtime_error( "PNG Image file can't be verified. Check if the file is valid." );
     }
     if ( png_sig_cmp(header, 0, 8) != 0) {
         throw runtime_error( string("File '" ).append(filename).append("' has .png at the end, but it isn't truly a png file" ) );

@@ -27,24 +27,25 @@ $(OBJDIR):
 
 .PHONY: run
 run: compile
-	@$(OBJDIR)/$(OUT) examples/config.txt
+	@./$(OUT) examples/config.txt
 
 #sanitizer
 .PHONY: san
 san: $(OBJS)
 	@$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OUT) $^ $(LIBS)
-	@$(OBJDIR)/$(OUT) examples/config.txt
+	@./$(OUT) examples/config.txt
 
 #valgrind
 .PHONY: val
 val: compile
-	@valgrind --leak-check=full $(OUT) examples/config.txt
+	@valgrind --leak-check=full ./$(OUT) examples/config.txt
 
 .PHONY: clean
 clean:
 	@rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	@rm -fd $(OBJDIR)
 	@rm -fr $(DOCDIR)
+	@rm -f $(OUT)
 
 .PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)

@@ -50,5 +50,17 @@ contrast 4
 channel n
 image_end;
 
+image:
+filename examples/hunka.png
+filetype png
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -1
+negative 0
+scale -8
+contrast 4
+channel n
+image_end;
+
+
 
 
