@@ -7,15 +7,15 @@ using namespace std;
  * @param images A CStorage with all image which were converted
  * @details Function asks user if he/she wants to move to the next/ prev picture or stop the presentation
  */
-void startPresentation( CStorage &images ) {
+void startPresentation( CStorage & images ) {
     //Get image data
-    vector<CImage*> images_to_present = images.getImages();
     int image_iterator = 0; //An iterator to control "slides"
     while ( true ){
         //If the presentation is on its end, show from the beginning
-        image_iterator = abs(int(image_iterator % images_to_present.size()));
+        image_iterator = abs(int(image_iterator % images.getImages().size()));
+
         //Print the image
-        images_to_present[image_iterator]->print();
+        images.getImages()[image_iterator]->print();
 
         //Communication with the user
         string answer;

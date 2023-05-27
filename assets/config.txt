@@ -10,11 +10,23 @@ image:
 filename photo.png
 filetype png
 gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
-brightness 0
+brightness -5
 negative 0
-scale -5
-contrast 5
-channel n
+scale -3
+contrast -2
+channel r
 image_end;
+
+image:
+filename test.jpg
+filetype jpg
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -5
+negative 0
+scale -10
+contrast 4
+channel b
+image_end;
+
 
 

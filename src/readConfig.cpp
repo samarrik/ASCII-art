@@ -24,8 +24,11 @@ bool readImageSettings(ifstream &configFile, CStorage & images )
     } else throw logic_error ( "An image block doesn't have filename option as the second one");
 
     //Read the image
-    if ( filetype == "jpeg"){
-        //TODO:
+    if ( filetype == "jpeg" || filetype == "jpg"){
+        CExtractorJPEG jpeg_image;
+        jpeg_image.read( filename );
+        //Initialize an image using received data
+        images.addImage(new CImage( images.getFilters(), filename, filetype, jpeg_image.get_pixels(), jpeg_image.get_width(),jpeg_image.get_height()));
     } else if (filetype == "png") {
         CExtractorPNG png_image;
         png_image.read( filename );

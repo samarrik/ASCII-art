@@ -5,6 +5,7 @@
 #include "cimage.h"
 #include "cstorage.h"
 #include "cextractorpng.h"
+#include "cextractorjpeg.h"
 #include <fstream>
 #include <stdexcept>
 #include <string>

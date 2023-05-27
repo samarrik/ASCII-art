@@ -2,7 +2,7 @@
 
 using namespace std;
 
-CContrast::CContrast ( int src )
+CContrast::CContrast ( int src  )
 {
     //If the object was created without passing any data into it, the default value will be set automatically;
     if ( src != -100 ) {

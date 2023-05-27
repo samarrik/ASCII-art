@@ -2,6 +2,7 @@
 #define EXTRACTOR
 
 #include "cimage.h"
+#include <algorithm>
 
 using namespace std;
 /**
@@ -18,5 +19,23 @@ class CExtractor {
          * A virtual method reads code data from the file
         */
         virtual void read( const string & filename ) = 0;
+
+        /**
+        * Function gets the width of an image which was extracted
+        * @return unsigned Image width
+        */
+        virtual unsigned get_width() const = 0;
+
+        /**
+        * Function gets the height of an image which was extracted
+        * @return unsigned Image height
+        */
+        virtual unsigned get_height() const = 0;
+
+        /**
+        * Function gets pixels of an image which was extracted
+        * @return unsigned Image pixels
+        */
+        virtual unsigned char * get_pixels () const = 0;
 };
 #endif //EXTRACTOR

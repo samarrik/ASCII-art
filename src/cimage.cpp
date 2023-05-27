@@ -97,6 +97,7 @@ void CImage::saveToFile( ofstream & outputFile ) const{
             }
             outputFile << m_ascii_data[g];
             outputFile << m_ascii_data[g];
+            outputFile << m_ascii_data[g];
             if ( ! is_scaled ) {
                 outputFile << m_ascii_data[g];
             }
@@ -116,6 +117,7 @@ void CImage::print() const noexcept{
             cout << m_ascii_data[g];
             cout << m_ascii_data[g];
             cout << m_ascii_data[g];
+
         }
         cout << '\n';
     }

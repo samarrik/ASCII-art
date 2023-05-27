@@ -19,19 +19,19 @@ class CExtractorPNG : public CExtractor {
          * Function gets the width of an image which was extracted
          * @return unsigned Image width
          */
-        unsigned get_width() const ;
+        unsigned get_width() const override ;
 
         /**
         * Function gets the height of an image which was extracted
         * @return unsigned Image height
         */
-        unsigned get_height() const ;
+        unsigned get_height() const override;
 
         /**
         * Function gets pixels of an image which was extracted
         * @return unsigned Image pixels
         */
-        unsigned char * get_pixels ();
+        unsigned char * get_pixels () const override;
 
         /**
         * Function reads data from the image
@@ -39,7 +39,6 @@ class CExtractorPNG : public CExtractor {
         void read( const string & filename ) override;
     
     private:
-        string m_filename;
         unsigned char * m_pixels;
         unsigned m_width;
         unsigned m_height;

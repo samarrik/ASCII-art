@@ -3,10 +3,11 @@
 using namespace std;
 
 void CExtractorPNG::read( const string & filename ) {
+
     //Open the file for reading
     FILE * fp = fopen(filename.c_str(), "rb");
     if ( fp == nullptr ) {
-        throw runtime_error( "Image file can't be opened. Check if the name of the file is valid." );
+        throw runtime_error( "PNG Image file can't be opened. Check if the name of the file is valid." );
     }
 
     /**
@@ -66,6 +67,7 @@ void CExtractorPNG::read( const string & filename ) {
 
     //Allocate memory for the pixel data array
     m_pixels = new unsigned char [m_width * m_height * 4];
+    fill(m_pixels, m_pixels + (m_width * m_height * 4), 0);
 
     //Copy the data from 2d array to 1d
     for (unsigned i = 0; i < m_height; i++) {
@@ -96,6 +98,6 @@ unsigned CExtractorPNG::get_height() const {
     return m_height;
 }
 
-unsigned char * CExtractorPNG::get_pixels (){
+unsigned char * CExtractorPNG::get_pixels()  const{
     return m_pixels;
 }
