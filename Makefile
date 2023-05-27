@@ -27,18 +27,18 @@ $(OBJDIR):
 
 .PHONY: run
 run: compile
-	$(OBJDIR)/$(OUT) assets/config.txt
+	$(OBJDIR)/$(OUT) examples/config.txt
 
 #sanitizer
 .PHONY: san
 san: $(OBJS)
 	$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OBJDIR)/$(OUT) $^ $(LIBS)
-	$(OBJDIR)/$(OUT) assets/config.txt
+	$(OBJDIR)/$(OUT) examples/config.txt
 
 #valgrind
 .PHONY: val
 val: compile
-	valgrind --leak-check=full ./$(OBJDIR)/$(OUT) assets/config.txt
+	valgrind --leak-check=full ./$(OBJDIR)/$(OUT) examples/config.txt
 
 .PHONY: clean
 clean:
