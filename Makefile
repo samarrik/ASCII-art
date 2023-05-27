@@ -1,4 +1,4 @@
-OUT    = ascii
+OUT    = samariva
 CXX    = g++
 LD     = g++
 CXXFLAGS   = -std=c++17 -Wall -pedantic -O2
@@ -17,45 +17,44 @@ all: compile
 compile: $(OBJDIR)/$(OUT)
 
 $(OBJDIR)/$(OUT): $(OBJS)
-	$(LD) $(CXXFLAGS) -o $@  $^ $(LIBS)
+	@$(LD) $(CXXFLAGS) -o $(OUT)  $^ $(LIBS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	$(CXX) $(CXXFLAGS) -MMD -c -o $@  $<
+	@$(CXX) $(CXXFLAGS) -MMD -c -o $@  $<
 
 $(OBJDIR):
-	mkdir -p $@
+	@mkdir -p $@
 
 .PHONY: run
 run: compile
-	$(OBJDIR)/$(OUT) examples/config.txt
+	@$(OBJDIR)/$(OUT) examples/config.txt
 
 #sanitizer
 .PHONY: san
 san: $(OBJS)
-	$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OBJDIR)/$(OUT) $^ $(LIBS)
-	$(OBJDIR)/$(OUT) examples/config.txt
+	@$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OUT) $^ $(LIBS)
+	@$(OBJDIR)/$(OUT) examples/config.txt
 
 #valgrind
 .PHONY: val
 val: compile
-	valgrind --leak-check=full ./$(OBJDIR)/$(OUT) examples/config.txt
+	@valgrind --leak-check=full $(OUT) examples/config.txt
 
 .PHONY: clean
 clean:
-	rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
-	rm -fd $(OBJDIR)
-	rm -fr $(DOCDIR)
-	mkdir $(DOCDIR)
+	@rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
+	@rm -fd $(OBJDIR)
+	@rm -fr $(DOCDIR)
 
 .PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)
-	rm -dfr $(DOCDIR)
-	mkdir -p $(DOCDIR)
-	doxygen Doxyfile
+	@rm -dfr $(DOCDIR)
+	@mkdir -p $(DOCDIR)
+	@doxygen Doxyfile
 
 .PHONY: pack
 pack: clean
-	rm -f samariva.zip
-	ls . | zip -@ -r samariva.zip
+	@rm -f samariva.zip
+	@ls . | zip -@ -r samariva.zip
 
 -include $(OBJDIR)/*.d
