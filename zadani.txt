@@ -1,7 +1,7 @@
-# ASCII-art
+== ASCII-art
 Autor: Ivan Samarskyi
 
-## Task from the progtest
+== Task from the progtest
 Vaším cílem je napsat nástroj, který na vstupu získá obrázek nebo sadu několika obrázků a překonvertuje je do ASCII art vizualizace.
 Pomocí parametrů při spuštění a/nebo konfiguračních souborů parametrizujte generování souborů.
 
@@ -23,12 +23,13 @@ Kde lze využít polymorfismus? (doporučené)
 4. druh výstupu: zobrazení, soubor, prezentace, …
 5. uživatelské rozhraní: konzole, ncurses, SDL, OpenGL (různé varianty), …
 
-## How my implementation will work 
-* converter == ascii-art generator
+==How my implementation will work 
 
-Converter will process a config.txt file in assets/ where all information for conversion will be provided
-This file should be filled by a user according to the template^. As a result converter will receive a file with
-default filters for ASCII conversion, image files and filters for the conversion of each file.
+Converter will process a config.txt file, added as a parameter to the application, where all information for conversion
+will be provided. This file should be filled by a user according to the template^. As a result converter will receive a
+file with default filters for ASCII conversion, image files and filters for the conversion of each file. After that application
+will convert each image according to filter. Results will be saved in .txt files in the same folder as source images.
+Then the user will be able to run presentation^^ of the results in the terminal, or exit the application.
 
 ^:  File should be filled accurately according to the template or the error message will be sent!
     1. There are two types of blocks that can be in this file:
@@ -39,31 +40,23 @@ default filters for ASCII conversion, image files and filters for the conversion
                     -> brightness   ( [-5;5] )                                        Where -5 is the darkest, 5 is the brightest                   5
                     -> negative     ( {0;1} )                                         Where 0 is natural, 1 is negative                             1
                     -> contrast     ( [-5;5] )                                        Where -5 is the least contrast, 5 is the most contrast        5
-                    -> scale        ( [-5;5] )                                        Where -5 is the smallest, 5 is the biggest                    5
-                    -> convolution  ( {0;1} )                                         Where 0 is natural, 1 is with convolution                     1
+                    -> scale        ( [-10;10] )                                      Where -10 is the smallest, 10 is the biggest                  5
+                    -> channel      ( {n,r,g,b} )                                     Where "n" is "NO CHANGE", "r" - RED,"g" - GREEN, "b" - BLUE   n
         -> image    *! The first two settings should always be the same
                     -> filename     ( a string of chars which is the name of the file with dot and filetype ) Doublecheck the name of your file     photo.png
                     -> filetype     ( a string which is the filetype of the file you've written above ) Pass only the type, without the dot         png
                     * other filters are totally the same as filters of the 'global block'
-    3. Notes:       1. Don't make mess in the file, or you will receive an error ;)
+    3. Notes:       1. Don't make mess in the file, or you will receive an error ;) ('\n' at the end is ESSENTIAL)
                     2. If you want you can separate blocks by '\n'
-                    3. In the assets/ you already have config.txt template, so you can just adjust already prepared config how you want
+                    3. In the examples/ folder you already have config.txt template, so you can just adjust already prepared config how you want
+                    
+^^: Application will communicate with the user using CLI. The user can agree on running a presentation or disagree.
+When presentation started, user can move to the next picture (by pressing "n"), to the previous one (by pressing "p") or
+quit the presentation (by pressing "q").
 
-How it works:
-
-///////////////////NOT READY YET!!!!!!!!!!!!!!!!!!!!!!!!!!!
-1. Converter will read the config file, set default filters. 
-2. Info about each image will be read (loop) ^^
-    ->  Filename and filetype will be read firstly and a parser will be chosen. (There is a CParser abstract class which has child CParser*** (*** -> for all formats))
-        A CParser***(child) will get only useful data from the image and return it as an instace of the class CImage.
-    ->  Now filters data will be read.
-3. When config file will be read to the end pre-conversion will start (filters will be applied) + grayscale
-4. Pre-converted data will be converted to an ascii art and will be written in the file. (one image - one file )
-5. A user will recive statistics about the process of conversion
-6. A user will be able to start presentation of results (ascii-arts) or end the program
-
-## Where the polymorfism was applied?
-Polymorfism will be 'between' CParser(abstract parent) and CParserJPEG(child), CParserPNG(child) ... etc.
-That will ensure that image data will be extracted from each image type without any problems. All parsers
-will return an instance of CImage class which will be stored in the CStorage;
-///////////////////NOT READY YET!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## Where the polymorphism was applied?
+Polymorphism is applied in two places:
+	1. There is a base abstract class CExtractor which represents a "template" for other specific classes (extractors)
+	which will be used to extract image data out of image file. At the moment it has two children CExtractorPNG and CExtractorJPEG.
+	2. There is a base abstract class CFilter that represents a general filter, which can be applied on the image. At the
+	moment it has several children CGradient,  CBrightness, CContrast, CScale, CNegative, CContrast.

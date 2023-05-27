@@ -1,7 +1,7 @@
 OUT    = ascii
 CXX    = g++
 LD     = g++
-CXXFLAGS   = -std=c++17 -Wall -pedantic -Wextra -O2
+CXXFLAGS   = -std=c++17 -Wall -pedantic -O2
 LIBS   = -lpng -ljpeg
 SRCDIR = src
 OBJDIR = build
@@ -49,6 +49,7 @@ clean:
 
 .PHONY: doc
 doc: Doxyfile $(HEADERS) | $(DOCDIR)
+	rm -dfr $(DOCDIR)
 	mkdir -p $(DOCDIR)
 	doxygen Doxyfile
 
