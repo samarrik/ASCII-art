@@ -1,6 +1,8 @@
 #ifndef EXTRACTORJPEG
 #define EXTRACTORJPEG
 
+#include <cstdio>
+#include <cstddef>
 #include <jpeglib.h>
 #include "cextractor.h"
 #include <csetjmp>

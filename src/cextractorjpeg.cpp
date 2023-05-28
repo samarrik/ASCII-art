@@ -1,4 +1,3 @@
-
 #include "cextractorjpeg.h"
 
 using namespace std;

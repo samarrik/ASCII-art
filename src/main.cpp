@@ -3,8 +3,6 @@
 #include "presentResults.h"
 #include "readConfig.h"
 #include "cstorage.h"
-#include "handler.h"
-#include <csignal>
 
 using namespace std;
 
@@ -12,9 +10,6 @@ int main( int argc, char* argv[] )
 {
     // Initialing storage
     static CStorage images;
-
-    //Setting up a handler for Ctrl+C
-    std::signal(SIGINT, handler);
 
     if ( argc < 2 ) {
         cerr << "\033[1;31mThe config file wasn't provided to the converter\033[0m" << endl;
