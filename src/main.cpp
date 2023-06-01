@@ -8,7 +8,7 @@ using namespace std;
 
 int main( int argc, char* argv[] )
 {
-    // Initialing storage
+    // Initializing storage
     static CStorage images;
 
     if ( argc < 2 ) {
@@ -35,7 +35,7 @@ int main( int argc, char* argv[] )
     }
 
     //Catches all possible errors the program may throw
-    catch (exception & e )
+    catch ( exception & e )
     {
         cout << "\033[1;31mERROR: " << string(e.what()).append("\033[0m") << endl;
     }

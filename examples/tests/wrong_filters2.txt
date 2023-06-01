@@ -1,0 +1,13 @@
+global:
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+negative 0
+scale 0
+contrast 0
+channel n
+global_end;
+
+image:
+filename examples/showcase/dombek.jpg
+filetype jpg
+gradent .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+image_end;

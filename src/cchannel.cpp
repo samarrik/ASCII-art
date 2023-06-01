@@ -2,20 +2,17 @@
 
 using namespace std;
 
-CChannel::CChannel( const string & src ){
-
-    //If the object was created without passing any data into it, the default value will be set automatically;
-    if ( src != "" ) {
-        m_channel = src; //If some value was passed into it, set it as value;
-    }
+CChannel::CChannel( const string & src )
+{
+  //If the object was created without passing any data into it, the default value will be set automatically;
+  if ( src != "" ) {
+      if ( ! (src == "n" || src == "r" || src == "g" || src == "b") ) {
+          throw logic_error("Non-existing channel have been chosen");
+      }
+      m_channel = src;//If some value was passed into and it is in the range
+  }
 }
-
 void CChannel::apply( CImage & src ){
-
-    //Checks if the option is valid
-    if ( ! (m_channel == "n" || m_channel == "r" || m_channel == "g" || m_channel == "b") ){
-        throw logic_error("Non-existing channel have been chosen");
-    }
 
     //If there is a channel-filter to be applied, apply it
     if ( m_channel != "n" ){

@@ -1,0 +1,41 @@
+image:
+filename examples/showcase/dombek.jpg
+filetype jpg
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -5
+negative 0
+scale -3
+contrast 3
+channel n
+image_end;
+
+global:
+negative 1
+global_end;
+
+image:
+filename examples/showcase/klouda.jpg
+filetype jpg
+brightness -3
+scale -10
+contrast -1
+channel r
+image_end;
+
+image:
+filename examples/showcase/vagner.jpg
+filetype jpg
+brightness 0
+scale -8
+contrast 2
+channel n
+image_end;
+
+image:
+filename examples/showcase/hunka.png
+filetype png
+brightness -1
+scale -8
+contrast 4
+channel n
+image_end;

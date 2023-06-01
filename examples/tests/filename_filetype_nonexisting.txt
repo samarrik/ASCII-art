@@ -1,0 +1,16 @@
+global:
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+negative 0
+scale 0
+contrast 0
+channel n
+global_end;
+
+image:
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brihtness -5
+negative 0
+scale -3
+contrast 3
+channel n
+image_end;

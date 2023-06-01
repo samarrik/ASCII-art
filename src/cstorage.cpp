@@ -28,10 +28,6 @@ vector<CFilter*> & CStorage::getFilters() noexcept {
     return m_default_filters;
 }
 
-unsigned CStorage::imagesCount () const noexcept {
-    return m_image_files.size();
-}
-
 CImage & CStorage::lastImage () {
     if ( m_image_files.empty() ){
         throw logic_error("You are trying to get the first image of an empty collection");

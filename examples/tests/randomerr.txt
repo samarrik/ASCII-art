@@ -1,0 +1,51 @@
+global:
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+negative 0
+scale 0
+contrast 0
+channel n
+global_end;
+
+image:
+filename examples/showcase/dombek.jpg
+filetype jpg
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -5
+negative 0
+scale -3
+contrast 3
+channel n
+image_end;
+
+image:
+filename examples/showcase/klouda.jpg
+filetype jpg
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -3
+negative 0
+scale -10
+contrast -1
+channel r
+image_end;
+
+image:
+filename examples/showcase/vagner.jpg
+filetype jpg
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness 0
+negative 0
+scale -8
+contrast 2
+channel n
+image_end;
+
+image:
+filename examples/showcase/hunka.png
+filetype png
+gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+brightness -1
+negative 0
+scale -8
+contrast 4
+channel n
+image_end;

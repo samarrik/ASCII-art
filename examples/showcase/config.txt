@@ -7,9 +7,9 @@ channel n
 global_end;
 
 image:
-filename examples/dombek.jpg
+filename examples/showcase/dombek.jpg
 filetype jpg
-gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
+gradient .,'innw*#B@$
 brightness -5
 negative 0
 scale -3
@@ -18,9 +18,8 @@ channel n
 image_end;
 
 image:
-filename examples/klouda.jpg
+filename examples/showcase/klouda.jpg
 filetype jpg
-gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 brightness -3
 negative 0
 scale -10
@@ -29,9 +28,8 @@ channel r
 image_end;
 
 image:
-filename examples/vagner.jpg
+filename examples/showcase/vagner.jpg
 filetype jpg
-gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 brightness 0
 negative 0
 scale -8
@@ -40,15 +38,11 @@ channel n
 image_end;
 
 image:
-filename examples/hunka.png
+filename examples/showcase/hunka.png
 filetype png
-gradient .'`^",:;Il!i><~+_-?][}{1)(|\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$
 brightness -1
 negative 0
 scale -8
 contrast 4
 channel n
 image_end;
-
-
-

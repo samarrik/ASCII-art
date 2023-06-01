@@ -44,20 +44,13 @@ public:
     vector<CFilter*> & getFilters() noexcept;
 
     /**
-     * Function to figure the number of images stored in
-     * the storage
-     * @return unsigned Number of images stored
-     */
-    unsigned imagesCount () const noexcept;
-
-    /**
      * Function gets the last image of a collection
      * @return CImage & to the last image of the collection
      */
     CImage & lastImage ();
 
     /**
-     * The function saves the name of/path to  the config file provided to the application
+     * The function saves the path to  the config file provided to the application
      * @param src A string containing the name of the config file
      */
     void saveConfig ( const string & src ) noexcept;

@@ -31,16 +31,18 @@ void readConfig( CStorage &images );
  * Function reads "global" parameters set in config.txt
  * @param[in] configFile fstream of config.txt
  * @param[in] default_filters code which will be used as default (being changed during this fun.)
- * @returns false When the end of file was read | other structure violations
-*/
-bool readGlobalSettings(ifstream & configFile, CStorage & images );
+ * @exception runtime_error May throw a runtime error if the name of the filter is wrong, or the structure was violated,
+ * or the value of the filter isn't of a required type / too big
+ */
+void readGlobalSettings(ifstream & configFile, CStorage & images );
 
 /**
  * A function which reads settings for images
  * @param[in] configFile An input filestream which carries data read from the config.txt file
  * @param[in] images A storage where data from images should be stored
- * @returns false When the end of file was read | other structure violations
+ * @exception runtime_error May throw a runtime error if the name of the filter is wrong, or the structure was violated,
+ * or the value of the filter isn't of a required type / too big
  */
-bool readImageSettings(ifstream &configFile, CStorage & images );
+void readImageSettings(ifstream &configFile, CStorage & images );
 
 #endif //READCONFIG
