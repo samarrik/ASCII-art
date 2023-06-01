@@ -7,8 +7,9 @@ SRCDIR = src
 OBJDIR = build
 DOCDIR = doc
 SRC    = $(wildcard $(SRCDIR)/*.cpp)
-OBJS   = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC) )
+OBJS   = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRC))
 HEADERS = $(wildcard src/*.h)
+SHWCASE = examples/showcase/config.txt
 
 .PHONY: all
 all: compile
@@ -27,24 +28,25 @@ $(OBJDIR):
 
 .PHONY: run
 run: compile
-	@./$(OUT) examples/config.txt
+	@./$(OUT) $(SHWCASE)
 
 #sanitizer
 .PHONY: san
 san: $(OBJS)
 	@$(LD) $(CXXFLAGS) -g -fsanitize=address -o $(OUT) $^ $(LIBS)
-	@./$(OUT) examples/config.txt
+	@./$(OUT) $(SHWCASE)
 
 #valgrind
 .PHONY: val
 val: compile
-	@valgrind --leak-check=full ./$(OUT) examples/config.txt
+	@valgrind --leak-check=full ./$(OUT) $(SHWCASE)
 
 .PHONY: clean
 clean:
 	@rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	@rm -fd $(OBJDIR)
 	@rm -fr $(DOCDIR)
+	@mkdir $(DOCDIR)
 	@rm -f $(OUT)
 
 .PHONY: doc
@@ -52,10 +54,5 @@ doc: Doxyfile $(HEADERS) | $(DOCDIR)
 	@rm -dfr $(DOCDIR)
 	@mkdir -p $(DOCDIR)
 	@doxygen Doxyfile
-
-.PHONY: pack
-pack: clean
-	@rm -f samariva.zip
-	@ls . | zip -@ -r samariva.zip
 
 -include $(OBJDIR)/*.d
