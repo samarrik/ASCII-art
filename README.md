@@ -45,10 +45,10 @@ quit the presentation (by pressing "q").
 
 ## Work examples:
 ### Sample configfile:
-![](screenshots/confilgfile.png)
+![](screenshots/configfile.png)
 
 ### Image processing
-![](screenshots/processingimages.png)
+![](screenshots/processing_images.png)
 
 ### Result (generated ASCII-art)
 ![](screenshots/art.png)
