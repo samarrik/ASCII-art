@@ -1,4 +1,4 @@
-OUT    = samariva
+OUT    = asciiart
 CXX    = g++
 LD     = g++
 CXXFLAGS   = -std=c++17 -Wall -pedantic -O2
@@ -12,7 +12,7 @@ HEADERS = $(wildcard src/*.h)
 SHWCASE = examples/showcase/config.txt
 
 .PHONY: all
-all: compile
+all: compile doc
 
 .PHONY: compile
 compile: $(OBJDIR)/$(OUT)
@@ -46,7 +46,6 @@ clean:
 	@rm -f $(OBJDIR)/$(OUT) $(OBJDIR)/*.o $(OBJDIR)/*.d
 	@rm -fd $(OBJDIR)
 	@rm -fr $(DOCDIR)
-	@mkdir $(DOCDIR)
 	@rm -f $(OUT)
 
 .PHONY: doc
