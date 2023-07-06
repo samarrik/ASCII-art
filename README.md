@@ -9,7 +9,7 @@ The goal of mine semester project was to create an ASCII-art generator, which al
 ASCII-art generator should:
 - [X] be able to process images of JPEG and PNG formats;
 - [X] implement at least 5 filters (exmp: brigtness, negative ... );
-- [X] save results of the conversion should be saved into files and presented to the user
+- [X] save results of the conversion into files and present them to the user
 - [X] give user an ability to manipulate the presentation
 - [X] be configured from the file
 
